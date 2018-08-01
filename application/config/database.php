@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'pgsql:host=localhost;port=5432;dbname=sppd',
+	'hostname' => 'pgsql:host=36.89.39.207;port=5153;dbname=esppd',
 	'username' => 'postgres',
-	'password' => 'root',
+	'password' => 'integrasiM4diun',
 	'database' => '',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
@@ -94,3 +94,25 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+// $db['default'] = array(
+// 	'dsn'	=> '',
+// 	'hostname' => 'pgsql:host=localhost;port=5432;dbname=sppd',
+// 	'username' => 'postgres',
+// 	'password' => 'root',
+// 	'database' => '',
+// 	'dbdriver' => 'pdo',
+// 	'dbprefix' => '',
+// 	'pconnect' => FALSE,
+// 	'db_debug' => (ENVIRONMENT !== 'production'),
+// 	'cache_on' => FALSE,
+// 	'cachedir' => '',
+// 	'char_set' => 'utf8',
+// 	'dbcollat' => 'utf8_general_ci',
+// 	'swap_pre' => '',
+// 	'encrypt' => FALSE,
+// 	'compress' => FALSE,
+// 	'stricton' => FALSE,
+// 	'failover' => array(),
+// 	'save_queries' => TRUE
+// );

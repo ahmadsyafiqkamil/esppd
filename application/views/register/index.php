@@ -3,35 +3,35 @@
 	<!-- Main navbar -->
 	<div class="navbar navbar-inverse bg-indigo">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="index.html"><img src="assets/images/logo_light.png" alt=""></a>
+			<a class="navbar-brand" href="index.html"><?php echo lang('cnt_1'); ?></a>
 
 			<ul class="nav navbar-nav pull-right visible-xs-block">
 				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
 			</ul>
 		</div>
 
-		<div class="navbar-collapse collapse" id="navbar-mobile">
+		<!-- <div class="navbar-collapse collapse" id="navbar-mobile">
 			<ul class="nav navbar-nav navbar-right">
 				<li>
 					<a href="#">
-						<i class="icon-display4"></i> <span class="visible-xs-inline-block position-right"> Go to website</span>
+						<i class="icon-display4"></i> <span class="visible-xs-inline-block position-right"><?php echo lang(' cnt_2'); ?></span>
 					</a>
 				</li>
 
 				<li>
 					<a href="#">
-						<i class="icon-user-tie"></i> <span class="visible-xs-inline-block position-right"> Contact admin</span>
+						<i class="icon-user-tie"></i> <span class="visible-xs-inline-block position-right"> <?php echo lang(' cnt_3'); ?></span>
 					</a>
 				</li>
 
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown">
 						<i class="icon-cog3"></i>
-						<span class="visible-xs-inline-block position-right"> Options</span>
+						<span class="visible-xs-inline-block position-right"> <?php echo lang(' cnt_4'); ?></span>
 					</a>
 				</li>
 			</ul>
-		</div>
+		</div> -->
 	</div>
 	<!-- /main navbar -->
 
@@ -46,7 +46,7 @@
 			<div class="content-wrapper">
 
 				<!-- Registration form -->
-				<form action="index/html">
+				<?php echo form_open(site_url("register/pro")); ?>
 					<div class="row">
 						<div class="col-lg-6 col-lg-offset-3">
 							<div class="panel registration-form">
@@ -154,7 +154,7 @@
 							</div>
 						</div>
 					</div>
-				</form>
+				<?php echo form_close(); ?>
 				<!-- /registration form -->
 
 			</div>

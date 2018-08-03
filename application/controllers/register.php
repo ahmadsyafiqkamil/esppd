@@ -2,7 +2,7 @@
 /**
 *
 */
-class Login extends CI_Controller
+class Register extends CI_Controller
 {
 
   function __construct()
@@ -13,7 +13,7 @@ class Login extends CI_Controller
   }
   public function index()
   {
-    $this->template->loadContent("login/index.php", array());
+    $this->template->loadContent("register/index.php", array());
   }
 }
 ?>

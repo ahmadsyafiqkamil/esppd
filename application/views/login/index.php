@@ -95,8 +95,8 @@
 							<li><a href="#" class="btn border-info text-info btn-flat btn-icon btn-rounded"><i class="icon-twitter"></i></a></li>
 						</ul> -->
 
-						<div class="content-divider text-muted form-group"><span><?php echo lang('cnt_10'); ?></span></div>
-						<a href="<?php echo site_url("register") ?>" class="btn btn-default btn-block content-group"> <?php echo lang('cnt_11'); ?></a>
+						<!-- <div class="content-divider text-muted form-group"><span><?php echo lang('cnt_10'); ?></span></div>
+						<a href="<?php echo site_url("register") ?>" class="btn btn-default btn-block content-group"> <?php echo lang('cnt_11'); ?></a> -->
 						<!-- <span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span> -->
 					</div>
 				<!-- </form> -->

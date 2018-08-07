@@ -22,4 +22,30 @@ $lang['cnt_9'] = "Login";
 $lang['cnt_10'] = "Don't have an account?";
 $lang['cnt_11'] = "Sign up";
 
+// Dashboard
+
+$lang['cnt_12'] = "My account";
+$lang['cnt_13'] = "My profile";
+$lang['cnt_14'] = "Account settings";
+$lang['cnt_15'] = "Logout";
+$lang['cnt_16'] = "Main";
+$lang['cnt_17'] = "Dashboard";
+$lang['cnt_18'] = "Master Data";
+$lang['cnt_19'] = "Master Instansi";
+$lang['cnt_20'] = "Master Pegawai";
+$lang['cnt_21'] = "Biaya & Lokasi Tujuan";
+$lang['cnt_22'] = "Master Golongan";
+$lang['cnt_23'] = "Master Jenis Transport";
+$lang['cnt_24'] = "Master TTD";
+$lang['cnt_25'] = "SPPD";
+$lang['cnt_26'] = "Usulan Perjalanan Dinas";
+$lang['cnt_27'] = "Telaah Staf";
+$lang['cnt_28'] = "Surat Perintah Tugas";
+$lang['cnt_29'] = "Surat Perintah Perjalanan Dinas";
+$lang['cnt_30'] = "Kwitansi";
+$lang['cnt_31'] = "Pernyataan Riil";
+$lang['cnt_32'] = "Rekap";
+$lang['cnt_33'] = "Rekap SPPD Tahunan";
+$lang['cnt_34'] = "Rekap SPPD Per Bulan";
+$lang['cnt_35'] = "System Log";
 ?>

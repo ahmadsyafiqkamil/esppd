@@ -14,7 +14,14 @@ class Client extends CI_Controller
   }
   public function index()
   {
+      
       $this->template->loadContent("client/index.php", array());
+      // $this->load->view('layout/client_layout');
+  }
+  public function instansi()
+  {
+
+    $this->template->loadContent("client/instansi.php", array());
   }
 }
 

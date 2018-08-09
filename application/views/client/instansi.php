@@ -2,6 +2,7 @@
   <div class="panel panel-flat">
     <div class="panel-heading">
       <h6 class="panel-title"><?php echo lang('cnt_19'); ?></h6>
+<<<<<<< HEAD
       <form class="form-horizontal" action="#">
         <fieldset class="content-group">
           <legend class="text-bold"></legend>
@@ -43,3 +44,10 @@
           </div>
         </div>
       </div>
+=======
+      <div class="heading-elements">
+
+      </div>
+    </div>
+</div>
+>>>>>>> 2ee0ba7a750941f6850cc42c54d8177d5f9596cb

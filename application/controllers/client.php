@@ -14,7 +14,7 @@ class Client extends CI_Controller
   }
   public function index()
   {
-      
+
       $this->template->loadContent("client/index.php", array());
       // $this->load->view('layout/client_layout');
   }
@@ -22,6 +22,10 @@ class Client extends CI_Controller
   {
 
     $this->template->loadContent("client/instansi.php", array());
+  }
+  public function pegawai()
+  {
+    $this->template->loadContent("client/pegawai",array( ));
   }
 }
 

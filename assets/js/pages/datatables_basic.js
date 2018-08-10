@@ -18,7 +18,7 @@ $(function() {
     // Setting datatable defaults
     $.extend( $.fn.dataTable.defaults, {
         autoWidth: false,
-        columnDefs: [{ 
+        columnDefs: [{
             orderable: false,
             width: '100px',
             targets: [ 5 ]
@@ -74,5 +74,5 @@ $(function() {
         minimumResultsForSearch: Infinity,
         width: 'auto'
     });
-    
+
 });

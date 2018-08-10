@@ -49,7 +49,6 @@ $lang['cnt_33'] = "Rekap SPPD Tahunan";
 $lang['cnt_34'] = "Rekap SPPD Per Bulan";
 $lang['cnt_35'] = "System Log";
 
-
 // Instansi
 
 $lang['cnt_36'] = "Nama Instansi";
@@ -59,5 +58,14 @@ $lang['cnt_39'] = "No Telp";
 $lang['cnt_40'] = "Kode Pos";
 $lang['cnt_41'] = "Kode Rekening";
 $lang['cnt_42'] = "Logo";
+
+// Pegawai
+
+$lang['cnt_43'] = "Tambah Pegawai";
+$lang['cnt_44'] = "NIP";
+$lang['cnt_45'] = "Nama";
+$lang['cnt_46'] = "Golongan";
+$lang['cnt_47'] = "Action";
+$lang['cnt_48'] = "No";
 
 ?>

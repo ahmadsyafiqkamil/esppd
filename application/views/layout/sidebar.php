@@ -37,7 +37,7 @@
             <a href="#"><i class="icon-stack2"></i> <span><?php echo lang('cnt_18'); ?></span></a>
             <ul>
               <li><a href="<?php echo site_url("client/instansi") ?>"><?php echo lang('cnt_19'); ?></a></li>
-              <li><a href="#"><?php echo lang('cnt_20'); ?></a></li>
+              <li><a href="<?php echo site_url("client/pegawai") ?>"><?php echo lang('cnt_20'); ?></a></li>
               <li><a href="#"><?php echo lang('cnt_21'); ?></a></li>
               <li><a href="#"><?php echo lang('cnt_22'); ?></a></li>
               <li><a href="#"><?php echo lang('cnt_23'); ?></a></li>

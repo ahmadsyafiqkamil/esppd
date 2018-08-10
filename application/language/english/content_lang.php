@@ -68,4 +68,10 @@ $lang['cnt_46'] = "Golongan";
 $lang['cnt_47'] = "Action";
 $lang['cnt_48'] = "No";
 
+// Golongan
+
+$lang['cnt_49'] = "Id";
+$lang['cnt_50'] = "Action";
+$lang['cnt_51'] = "Tambah Data Golongan";
+
 ?>

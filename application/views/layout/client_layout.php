@@ -28,9 +28,10 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/extra_fullcalendar.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/form_inputs.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/styling/uniform.min.js"></script>
+
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/tables/datatables/datatables.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/select2.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/datatables_basic.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/select2.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/datatables_data_sources.js"></script>
 
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/core/app.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/ui/ripple.min.js"></script>
@@ -94,38 +95,38 @@
 			</ul>
 
 			<!-- <ul class="breadcrumb-elements">
-				<li><a href="#"><i class="icon-comment-discussion position-left"></i> Support</a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-gear position-left"></i>
-						Settings
-						<span class="caret"></span>
-					</a>
+			<li><a href="#"><i class="icon-comment-discussion position-left"></i> Support</a></li>
+			<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			<i class="icon-gear position-left"></i>
+			Settings
+			<span class="caret"></span>
+		</a>
 
-					<ul class="dropdown-menu dropdown-menu-right">
-					<li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>
-					<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>
-					<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>
-					<li class="divider"></li>
-					<li><a href="#"><i class="icon-gear"></i> All settings</a></li>
-				</ul>
-			</li>
-		</ul> -->
+		<ul class="dropdown-menu dropdown-menu-right">
+		<li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>
+		<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>
+		<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>
+		<li class="divider"></li>
+		<li><a href="#"><i class="icon-gear"></i> All settings</a></li>
+	</ul>
+</li>
+</ul> -->
+</div>
+
+<div class="page-header-content">
+	<div class="page-title">
+		<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold"><?php echo lang('cnt_17'); ?></span> </h4>
 	</div>
 
-	<div class="page-header-content">
-		<div class="page-title">
-			<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold"><?php echo lang('cnt_17'); ?></span> </h4>
-		</div>
-
-		<!-- <div class="heading-elements">
-			<div class="heading-btn-group">
-				<a href="#" class="btn btn-link btn-float text-size-small has-text"><i class="icon-bars-alt text-indigo-400"></i><span>Statistics</span></a>
-				<a href="#" class="btn btn-link btn-float text-size-small has-text"><i class="icon-calculator text-indigo-400"></i><span>Invoices</span></a>
-				<a href="#" class="btn btn-link btn-float text-size-small has-text"><i class="icon-calendar5 text-indigo-400"></i><span>Schedule</span></a>
-			</div>
-		</div> -->
-	</div>
+	<!-- <div class="heading-elements">
+	<div class="heading-btn-group">
+	<a href="#" class="btn btn-link btn-float text-size-small has-text"><i class="icon-bars-alt text-indigo-400"></i><span>Statistics</span></a>
+	<a href="#" class="btn btn-link btn-float text-size-small has-text"><i class="icon-calculator text-indigo-400"></i><span>Invoices</span></a>
+	<a href="#" class="btn btn-link btn-float text-size-small has-text"><i class="icon-calendar5 text-indigo-400"></i><span>Schedule</span></a>
+</div>
+</div> -->
+</div>
 </div>
 <!-- /page header -->
 

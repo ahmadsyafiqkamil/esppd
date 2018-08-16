@@ -43,7 +43,7 @@
 
 		<div class="navbar-collapse collapse" id="footer">
 			<div class="navbar-text">
-				&copy; <?php echo date("Y"); ?>. By<a href="http://pttati.co.id/contact" class="navbar-link"> Pt. TaTI</a>
+				&copy; <?php echo date("Y"); ?>. By<a href="http://pttati.co.id/contact" class="navbar-link" target="_blank"> PT. TATI</a>
 				<!-- <a href="" class="navbar-link" target="_blank"></a> -->
 			</div>
 

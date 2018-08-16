@@ -147,7 +147,7 @@
 									</div>
 
 									<div class="text-right">
-										<button type="submit" class="btn btn-link"><i class="icon-arrow-left13 position-left"></i> Back to login form</button>
+										<a type="button" class="btn btn-link" href="login"><i class="icon-arrow-left13 position-left"></i> Back to login form</a>
 										<button type="submit" class="btn bg-teal-400 btn-labeled btn-labeled-right ml-10"><b><i class="icon-plus3"></i></b> Create account</button>
 									</div>
 								</div>

@@ -11,6 +11,8 @@ class Client extends CI_Controller
     $this->template->loadResponsiveSidebar("layout/sidebar");
     $this->template->set_layout("layout/client_layout.php");
 
+    $this->load->model("client_model");
+
   }
   public function index()
   {
@@ -18,63 +20,130 @@ class Client extends CI_Controller
   }
   public function instansi()
   {
-    $this->template->loadContent("client/instansi.php", array());
+    $this->template->loadContent("client/instansi.php", array(
+      'msg' => "",
+    ));
   }
-  public function pegawai()
+  public function instansi_pro()
   {
-    $this->template->loadContent("client/pegawai",array( ));
-  }
-  public function golongan()
-  {
-    $this->template->loadContent("client/golongan",array( ));
-  }
+    $name = $this->common->nohtml($this->input->post("nama"));
+    $alamat = $this->common->nohtml($this->input->post("alamat"));
+    $hukum = $this->common->nohtml($this->input->post("hukum"));
+    $telp = $this->common->nohtml($this->input->post("telp"));
+    $rek = $this->common->nohtml($this->input->post("rek"));
+    $pos = $this->common->nohtml($this->input->post("pos"));
 
-  public function transport()
-  {
-    $this->template->loadContent("client/transport.php", array());
-  }
-  public function ttd()
-  {
-    $this->template->loadContent("client/ttd",array( ));
-  }
-  public function usulan()
-  {
-    $this->template->loadContent("client/usulan",array( ));
-  }
+    // $data = array(
+    //   'nama' => $name,
+    //   'alamat' => $alamat,
+    //   'dasar_hukum' => $hukum,
+    //   'no_telp' => $telp,
+    //   'kode_pos' => $pos,
+    //   'kode_rekening' => $rek,
+    //   'logo' => $this->upload->data('full_path'),
+    // );
+    //     $this->client_model->instansi_add($data);
+    //
+    //     $this->template->loadContent("client/instansi.php", array(
+    // 'msg' => "success",
+    //     ));
+    $this->load->library('upload');
+    $this->upload->initialize(array(
+      "upload_path" => "./uploads/",
+      "overwrite" => FALSE,
+      "max_filename" => 300,
+      "encrypt_name" => TRUE,
+      "remove_spaces" => TRUE,
+      "allowed_types" => "|jpg|png",
+      // "max_size" => $this->settings->info->file_size,
+    )
+  );
 
-  public function telaah()
+  if ( ! $this->upload->do_upload('logo' ))
   {
-    $this->template->loadContent("client/telaah.php", array());
+    $error = array('error' => $this->upload->display_errors());
+    $this->template->loadContent("client/instansi.php", array(
+      'msg' => $error
+    ));
   }
-  public function tugas()
-  {
-    $this->template->loadContent("client/tugas",array( ));
-  }
-  public function perjalanan()
-  {
-    $this->template->loadContent("client/perjalanan",array( ));
-  }
-
-  public function kwitansi()
-  {
-    $this->template->loadContent("client/kwitansi.php", array());
-  }
-  public function riil()
-  {
-    $this->template->loadContent("client/riil",array( ));
-  }
-  public function rtahun()
-  {
-    $this->template->loadContent("client/rekap-tahunan",array( ));
-  }
-  public function rbulan()
-  {
-    $this->template->loadContent("client/rekap-bulanan",array( ));
-  }
-  public function log()
-  {
-    $this->template->loadContent("client/log",array( ));
+  else {
+    // $data = array('upload_data' => $this->upload->data());
+    $data = array(
+      'nama' => $name,
+      'alamat' => $alamat,
+      'dasar_hukum' => $hukum,
+      'no_telp' => $telp,
+      'kode_pos' => $pos,
+      'kode_rekening' => $rek,
+      'logo' => $this->upload->data('full_path'),
+    );
+    if ($this->client_model->instansi_add($data)) {
+      $this->template->loadContent("client/instansi.php", array(
+        'msg' => "success"
+      ));
+    }else {
+      $this->template->loadContent("client/instansi.php", array(
+        'msg' => "tidak sukses"
+      ));
+    }
   }
 }
 
+public function pegawai()
+{
+  $this->template->loadContent("client/pegawai",array( ));
+}
+public function golongan()
+{
+  $this->template->loadContent("client/golongan",array( ));
+}
+
+public function transport()
+{
+  $this->template->loadContent("client/transport.php", array());
+}
+public function ttd()
+{
+  $this->template->loadContent("client/ttd",array( ));
+}
+public function usulan()
+{
+  $this->template->loadContent("client/usulan",array( ));
+}
+
+public function telaah()
+{
+  $this->template->loadContent("client/telaah.php", array());
+}
+public function tugas()
+{
+  $this->template->loadContent("client/tugas",array( ));
+}
+public function perjalanan()
+{
+  $this->template->loadContent("client/perjalanan",array( ));
+}
+
+public function kwitansi()
+{
+  $this->template->loadContent("client/kwitansi.php", array());
+}
+public function riil()
+{
+  $this->template->loadContent("client/riil",array( ));
+}
+public function rtahun()
+{
+  $this->template->loadContent("client/rekap-tahunan",array( ));
+}
+public function rbulan()
+{
+  $this->template->loadContent("client/rekap-bulanan",array( ));
+}
+public function log()
+{
+  $this->template->loadContent("client/log",array( ));
+}
+
+}
 ?>

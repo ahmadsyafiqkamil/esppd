@@ -15,7 +15,7 @@
 
 		<div class="panel-body">
 			<?php echo $msg; ?>
-			<?php echo form_open('client/instansi_pro', 'class="form-horizontal"'); ?>
+			<?php echo form_open_multipart('client/instansi_pro', 'class="form-horizontal"'); ?>
 
 			<fieldset class="content-group">
 
@@ -56,21 +56,21 @@
 						<input type="text" class="form-control" name="Rekening" required>
 					</div>
 				</div>
-				<fieldset class="content-group">
-				<div class="form-group">
-				<label class="control-label col-lg-2"><?php echo lang('cnt_42'); ?></label>
-				<div class="col-lg-10">
-				<input type="file" class="file-styled-primary" name="logo" required>
+				<!-- <fieldset class="content-group">
+					<div class="form-group">
+						<label class="control-label col-lg-2"><?php echo lang('cnt_42'); ?></label>
+						<div class="col-lg-10">
+							<input type="file" class="file-styled-primary" name="logo" required>
+						</div>
+					</div>
+				</fieldset> -->
+				<div class="text-right">
+					<button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
+				</div>
+
+				<?php echo form_close(); ?>
 			</div>
 		</div>
-	</fieldset>
-	<div class="text-right">
-		<button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
+		<!-- /form horizontal -->
+
 	</div>
-
-	<?php echo form_close(); ?>
-</div>
-</div>
-<!-- /form horizontal -->
-
-</div>

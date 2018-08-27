@@ -74,4 +74,6 @@ $lang['cnt_49'] = "Id";
 $lang['cnt_50'] = "Action";
 $lang['cnt_51'] = "Tambah Data Golongan";
 
+// Edit Data Pegawai
+$lang['cnt_52'] = "Edit Pegawai";
 ?>

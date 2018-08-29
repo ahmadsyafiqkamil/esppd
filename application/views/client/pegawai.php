@@ -1,10 +1,4 @@
-<script type="text/javascript">
 
-$(document).ready(function() {
-  $('#example').DataTable();
-} );
-
-</script>
 <button type="button" name="button"></button>
 <div class="content-wrapper">
   <!-- Javascript sourced data -->
@@ -32,7 +26,7 @@ $(document).ready(function() {
           <th><?php echo lang('cnt_44'); ?></th>
           <th><?php echo lang('cnt_45'); ?></th>
           <th><?php echo lang('cnt_46'); ?></th>
-          <th><?php echo lang('cnt_47'); ?></th>
+          <th class="text-center"><?php echo lang('cnt_47'); ?></th>
         </tr>
       </thead>
       <tbody>
@@ -44,65 +38,125 @@ $(document).ready(function() {
             <td><?php echo $p->username; ?></td>
             <td><?php echo $p->name; ?></td>
             <td><?php echo $p->nama; ?></td>
-            <td class="text-center">
-              <ul class="icons-list">
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-menu9"></i>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="<?php site_url()?>client/pegawai_update/<?php echo $p->id ?>" data-toggle="modal" data-target="#modal_form_horizontal">Edit</li>
-                      <li><a href="<?php site_url()?>client/pegawai_delete/<?php echo $p->id ?>">Hapus</li>
-                      </ul>
-                    </li>
-                  </ul>
-                </td>
-              </tr>
-            <?php endforeach; ?>
+            <td>
+              <a
+              href="javascript:;"
+              data-id="<?php echo $p->id; ?>"
+              data-nip="<?php echo $p->username; ?>"
+              data-nama="<?php echo $p->name; ?>"
+              data-golongan="<?php echo $p->nama; ?>"
+              data-toggle="modal" data-target="#edit-data">
+              <button  data-toggle="modal" data-target="#ubah-data" class="btn btn-info">Ubah</button>
+            </a>
+            <a href="#" type="button" class="btn btn-danger btn-sm" id="sweet_combine" >Delete</a>
+          </td>
+        </tr>
+      <?php endforeach; ?>
+    </table>
+    <!-- /basic datatable -->
+  </div>
+  <!-- /javascript sourced data -->
 
-          </table>
-          <!-- /basic datatable -->
-        </div>
-        <!-- /javascript sourced data -->
+</div>
 
+<!--  modal edit data-->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <h4 class="modal-title">Ubah Data</h4>
       </div>
-
-      <div id="modal_form_horizontal" class="modal fade">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h5 class="modal-title"><?php echo lang('cnt_52'); ?></h5>
+      <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" role="form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="col-lg-2 col-sm-2 control-label">Nama</label>
+            <div class="col-lg-10">
+              <input type="hidden" id="id" name="id">
+              <input type="text" class="form-control" id="nama" name="nama" placeholder="Tuliskan Nama">
             </div>
-
-            <form action="#" class="form-horizontal">
-              <div class="modal-body">
-                <div class="form-group">
-                  <label class="control-label col-sm-3"><?php echo lang('cnt_44'); ?></label>
-                  <div class="col-sm-9">
-                    <input type="text" placeholder="" class="form-control" value="<?php echo $p->username; ?>">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="control-label col-sm-3"><?php echo lang('cnt_45'); ?></label>
-                  <div class="col-sm-9">
-                    <input type="text" placeholder="" class="form-control" value="<?php echo $p->name; ?>">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="control-label col-sm-3"><?php echo lang('cnt_46'); ?></label>
-                  <div class="col-sm-9">
-                    <input type="text" placeholder="" class="form-control" value="<?php echo $p->nama; ?>">
-                  </div>
-                </div>
-
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Submit form</button>
-                </div>
-              </form>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 col-sm-2 control-label">Alamat</label>
+            <div class="col-lg-10">
+              <textarea class="form-control" id="alamat" name="alamat" placeholder="Tuliskan Alamat"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 col-sm-2 control-label">Pekerjaan</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" placeholder="Tuliskan Pekerjaan">
             </div>
           </div>
         </div>
+        <div class="modal-footer">
+          <button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--  modal update data-->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <h4 class="modal-title">Ubah Data</h4>
+      </div>
+      <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" role="form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="col-lg-2 col-sm-2 control-label">Nama</label>
+            <div class="col-lg-10">
+              <input type="hidden" id="id" name="id">
+              <input type="text" class="form-control" id="nama" name="nama" placeholder="Tuliskan Nama">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 col-sm-2 control-label">Alamat</label>
+            <div class="col-lg-10">
+              <textarea class="form-control" id="alamat" name="alamat" placeholder="Tuliskan Alamat"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 col-sm-2 control-label">Pekerjaan</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" placeholder="Tuliskan Pekerjaan">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+  $('#example').DataTable();
+} );
+
+$(document).ready(function() {
+  // Untuk sunting
+  $('#edit-data').on('show.bs.modal', function (event) {
+    var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+    var modal          = $(this)
+
+    // Isi nilai pada field
+    modal.find('#id').attr("value",div.data('id'));
+    modal.find('#nip').attr("value",div.data('nama'));
+    modal.find('#nama').html(div.data('alamat'));
+    modal.find('#golongan').attr("value",div.data('pekerjaan'));
+  });
+});
+
+
+</script>

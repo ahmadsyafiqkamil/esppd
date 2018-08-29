@@ -76,4 +76,8 @@ $lang['cnt_51'] = "Tambah Data Golongan";
 
 // Edit Data Pegawai
 $lang['cnt_52'] = "Edit Pegawai";
+// warning
+$lang['cnt_53'] = "Apakah anda yakin ?";
+$lang['cnt_54'] = "Anda akan menghapus data ini";
+$lang['cnt_55'] = "Yes";
 ?>

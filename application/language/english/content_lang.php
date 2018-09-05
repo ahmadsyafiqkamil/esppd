@@ -80,4 +80,12 @@ $lang['cnt_52'] = "Edit Pegawai";
 $lang['cnt_53'] = "Apakah anda yakin ?";
 $lang['cnt_54'] = "Anda akan menghapus data ini";
 $lang['cnt_55'] = "Yes";
+
+$lang['cnt_56'] = "Jabatan";
+
+// golongan
+
+$lang['cnt_57'] = "ID";
+$lang['cnt_58'] = "Jabatan";
+
 ?>

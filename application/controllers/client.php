@@ -95,73 +95,97 @@ class Client extends CI_Controller
 
   public function pegawai()
   {
-    $data = $this->client_model->pegawai_get();
+    $pegawai = $this->client_model->pegawai_get();
+    $golongan = $this->client_model->golongan_get();
+    $jabatan = $this->client_model->jabatan_get();
     $this->template->loadContent("client/pegawai",array(
-    'pegawai'=> $data));
-  }
-  public function pegawai_get_byid($id='')
-  {
-    
-  }
-  public function pegawai_update($id)
-  {
-    $this->client_model->pegawai_update($id);
-  }
-  public function pegawai_delete($id)
-  {
-    $this->client_model->pegawai_delete($id);
-  }
-  public function golongan()
-  {
-    $this->template->loadContent("client/golongan",array( ));
-  }
+      'pegawai'=> $pegawai,
+      'golongan'=>$golongan,
+      'jabatan' =>$jabatan
+    ));
+    }
 
-  public function transport()
-  {
-    $this->template->loadContent("client/transport.php", array());
-  }
-  public function ttd()
-  {
-    $this->template->loadContent("client/ttd",array( ));
-  }
-  public function usulan()
-  {
-    $this->template->loadContent("client/usulan",array( ));
-  }
+    public function pegawai_update($id)
+    {
+      $id = $this->common->nohtml($this->input->post("id"));
+      $nip = $this->common->nohtml($this->input->post("nip"));
+      $nama =$this->common->nohtml($this->input->post("nama"));
+      $golongan =$this->common->nohtml($this->input->post("golongan"));
+      $this->client_model->pegawai_update($id);
+    }
+    public function pegawai_delete($id)
+    {
+      $this->client_model->pegawai_delete($id);
+    }
+    public function golongan()
+    {
+      $golongan = $this->client_model->golongan_get();
+      $this->template->loadContent("client/golongan",array(
+      'golongan'=>$golongan
 
-  public function telaah()
-  {
-    $this->template->loadContent("client/telaah.php", array());
-  }
-  public function tugas()
-  {
-    $this->template->loadContent("client/tugas",array( ));
-  }
-  public function perjalanan()
-  {
-    $this->template->loadContent("client/perjalanan",array( ));
-  }
+    ));
+    }
+    public function golongan_update()
+    {
+      $id = $this->common->nohtml($this->input->post("id"));
+      $golongan = $this->common->nohtml($this->input->post("golongan"));
+    }
 
-  public function kwitansi()
-  {
-    $this->template->loadContent("client/kwitansi.php", array());
-  }
-  public function riil()
-  {
-    $this->template->loadContent("client/riil",array( ));
-  }
-  public function rtahun()
-  {
-    $this->template->loadContent("client/rekap-tahunan",array( ));
-  }
-  public function rbulan()
-  {
-    $this->template->loadContent("client/rekap-bulanan",array( ));
-  }
-  public function log()
-  {
-    $this->template->loadContent("client/log",array( ));
-  }
+    public function golongan_delete()
+    {
 
-}
-?>
+    }
+    public function golongan_add()
+    {
+      // code...
+    }
+
+    public function transport()
+    {
+      $this->template->loadContent("client/transport.php", array());
+    }
+    public function ttd()
+    {
+      $this->template->loadContent("client/ttd",array( ));
+    }
+    public function usulan()
+    {
+      $this->template->loadContent("client/usulan",array( ));
+    }
+
+    public function telaah()
+    {
+      $this->template->loadContent("client/telaah.php", array());
+    }
+    public function tugas()
+    {
+      $this->template->loadContent("client/tugas",array( ));
+    }
+    public function perjalanan()
+    {
+      $this->template->loadContent("client/perjalanan",array( ));
+    }
+
+    public function kwitansi()
+    {
+      $this->template->loadContent("client/kwitansi.php", array());
+    }
+    public function riil()
+    {
+      $this->template->loadContent("client/riil",array( ));
+    }
+    public function rtahun()
+    {
+      $this->template->loadContent("client/rekap-tahunan",array( ));
+    }
+    public function rbulan()
+    {
+      $this->template->loadContent("client/rekap-bulanan",array( ));
+    }
+    public function log()
+    {
+      $this->template->loadContent("client/log",array( ));
+    }
+
+  }
+  ?>

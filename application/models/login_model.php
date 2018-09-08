@@ -16,6 +16,23 @@ class Login_model extends CI_Model
     ->where('master_user.user_id', $nip)
     ->where('master_user.user_password', md5($password))
     ->get("master_user");
+
+  }
+  public function getSuperAdmin($nip,$password)
+  {
+    return $this->db->select("user_id,user_name")
+    ->where("user_id" ,$nip)
+    ->where("user_password",$password)
+    ->get("master_user");
+  }
+
+  public function getAdmin($nip,$password)
+  {
+    return $this->db->select("master_user.user_id ,instansi.nama")
+    ->join("instansi", "master_user.user_id = instansi.unit_id ")
+    ->where('master_user.user_id', $nip)
+    ->where('master_user.user_password', md5($password))
+    ->get("master_user");
   }
   public function instansi()
   {

@@ -103,89 +103,102 @@ class Client extends CI_Controller
       'golongan'=>$golongan,
       'jabatan' =>$jabatan
     ));
-    }
+  }
 
-    public function pegawai_update($id)
-    {
-      $id = $this->common->nohtml($this->input->post("id"));
-      $nip = $this->common->nohtml($this->input->post("nip"));
-      $nama =$this->common->nohtml($this->input->post("nama"));
-      $golongan =$this->common->nohtml($this->input->post("golongan"));
-      $this->client_model->pegawai_update($id);
-    }
-    public function pegawai_delete($id)
-    {
-      $this->client_model->pegawai_delete($id);
-    }
-    public function golongan()
-    {
-      $golongan = $this->client_model->golongan_get();
-      $this->template->loadContent("client/golongan",array(
+  public function pegawai_add($value='')
+  {
+    $id = $this->common->nohtml($this->input->post("id"));
+    $nip = $this->common->nohtml($this->input->post("nip"));
+    $nama =$this->common->nohtml($this->input->post("nama"));
+    $golongan =$this->common->nohtml($this->input->post("golongan"));
+
+  }
+  public function pegawai_update($id)
+  {
+    $id = $this->common->nohtml($this->input->post("id"));
+    $nip = $this->common->nohtml($this->input->post("nip"));
+    $nama =$this->common->nohtml($this->input->post("nama"));
+    $jabata =$this->common->nohtml($this->input->post("jabatan"));
+    $golongan =$this->common->nohtml($this->input->post("golongan"));
+    $alamat =$this->common->nohtml($this->input->post("alamat"));
+    $this->client_model->pegawai_update($id);
+  }
+  public function pegawai_delete($id)
+  {
+    $this->client_model->pegawai_delete($id);
+  }
+  public function golongan()
+  {
+    $golongan = $this->client_model->golongan_get();
+    $this->template->loadContent("client/golongan",array(
       'golongan'=>$golongan
 
     ));
-    }
-    public function golongan_update()
-    {
-      $id = $this->common->nohtml($this->input->post("id"));
-      $golongan = $this->common->nohtml($this->input->post("golongan"));
-    }
+  }
+  public function golongan_update()
+  {
+    $id = $this->common->nohtml($this->input->post("id"));
+    $golongan = $this->common->nohtml($this->input->post("golongan"));
+  }
 
-    public function golongan_delete()
-    {
-
-    }
-    public function golongan_add()
-    {
-      // code...
-    }
-
-    public function transport()
-    {
-      $this->template->loadContent("client/transport.php", array());
-    }
-    public function ttd()
-    {
-      $this->template->loadContent("client/ttd",array( ));
-    }
-    public function usulan()
-    {
-      $this->template->loadContent("client/usulan",array( ));
-    }
-
-    public function telaah()
-    {
-      $this->template->loadContent("client/telaah.php", array());
-    }
-    public function tugas()
-    {
-      $this->template->loadContent("client/tugas",array( ));
-    }
-    public function perjalanan()
-    {
-      $this->template->loadContent("client/perjalanan",array( ));
-    }
-
-    public function kwitansi()
-    {
-      $this->template->loadContent("client/kwitansi.php", array());
-    }
-    public function riil()
-    {
-      $this->template->loadContent("client/riil",array( ));
-    }
-    public function rtahun()
-    {
-      $this->template->loadContent("client/rekap-tahunan",array( ));
-    }
-    public function rbulan()
-    {
-      $this->template->loadContent("client/rekap-bulanan",array( ));
-    }
-    public function log()
-    {
-      $this->template->loadContent("client/log",array( ));
-    }
+  public function golongan_delete()
+  {
 
   }
-  ?>
+  public function golongan_add()
+  {
+    // code...
+  }
+
+  public function transport()
+  {
+    $this->template->loadContent("client/transport.php", array());
+  }
+  public function ttd()
+  {
+    $this->template->loadContent("client/ttd",array( ));
+  }
+  public function usulan()
+  {
+    $this->template->loadContent("client/usulan",array( ));
+  }
+
+  public function telaah()
+  {
+    $this->template->loadContent("client/telaah.php", array());
+  }
+  public function tugas()
+  {
+    $this->template->loadContent("client/tugas",array( ));
+  }
+  public function perjalanan()
+  {
+    $this->template->loadContent("client/perjalanan",array( ));
+  }
+
+  public function kwitansi()
+  {
+    $this->template->loadContent("client/kwitansi.php", array());
+  }
+  public function riil()
+  {
+    $this->template->loadContent("client/riil",array( ));
+  }
+  public function rtahun()
+  {
+    $this->template->loadContent("client/rekap-tahunan",array( ));
+  }
+  public function rbulan()
+  {
+    $this->template->loadContent("client/rekap-bulanan",array( ));
+  }
+  public function log()
+  {
+    $this->template->loadContent("client/log",array( ));
+  }
+  public function tambah_nota()
+  {
+    $this->template->loadContent("client/tambah-nota",array( ));
+  }
+}
+?>

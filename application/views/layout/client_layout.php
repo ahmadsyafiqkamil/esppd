@@ -31,17 +31,20 @@
 
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/tables/datatables/datatables.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/select2.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/datatables_data_sources.js"></script>
+	<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/datatables_basic.js"></script> -->
 
-	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/notifications/bootbox.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/notifications/sweet_alert.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/select2.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/components_modals.js"></script>
 
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/tags/tagsinput.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/tags/tokenfield.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/ui/prism.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/inputs/typeahead/typeahead.bundle.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/form_tags_input.js"></script>
+
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/notifications/bootbox.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/notifications/sweet_alert.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/select2.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/components_modals.js"></script>
 
 
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/core/app.js"></script>
@@ -87,7 +90,7 @@
 						<li><a href="#"><i class="icon-user-plus"></i> <?php echo lang('cnt_13'); ?></a></li>
 						<li class="divider"></li>
 						<li><a href="#"><i class="icon-cog5"></i><?php echo lang('cnt_14'); ?></a></li>
-						<li><a href="#"><i class="icon-switch2"></i> <?php echo lang('cnt_15'); ?></a></li>
+						<li><a href="<?php echo site_url('login/logout') ?>"><i class="icon-switch2"></i> <?php echo lang('cnt_15'); ?></a></li>
 					</ul>
 				</li>
 			</ul>

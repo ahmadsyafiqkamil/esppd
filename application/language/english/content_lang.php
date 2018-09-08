@@ -88,4 +88,12 @@ $lang['cnt_56'] = "Jabatan";
 $lang['cnt_57'] = "ID";
 $lang['cnt_58'] = "Jabatan";
 
+// usulan Dinas
+
+$lang['cnt_59'] = "Tambah Usulan Perjalanan Dinas";
+$lang['cnt_60'] = "Jabatan";
+$lang['cnt_61'] = "Alamat";
+
+$lang['cnt_62'] = "Instansi";
+
 ?>

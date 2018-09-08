@@ -13,9 +13,9 @@
     </div>
 
     <div class="panel-body">
-      <!-- <div class="text-right">
-        <button type="button" class="btn btn-primary"><?php echo lang('cnt_43'); ?> <i class="glyphicon glyphicon-user position-right"></i></button>
-      </div> -->
+      <div class="text-right">
+        <a href="<?php echo site_url("client/tambah_nota"); ?>" type="button" class="btn btn-primary"><?php echo lang('cnt_59'); ?> <i class="glyphicon glyphicon-user position-right"></i></a>
+      </div>
     </div>
 
     <table class="table datatable-js">
@@ -36,31 +36,43 @@
 </div>
 
 <script type="text/javascript">
+
+
+function ubahDataPegawai (id,golongan){
+  $('#id').val(id);
+  $('#golongan').val(golongan);
+}
+
 $.extend( $.fn.dataTable.defaults, {
-    autoWidth: false,
-    columnDefs: [{
-        orderable: false,
-        width: '100px'
-    }],
-    dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
-    language: {
-        search: '<span>Filter:</span> _INPUT_',
-        searchPlaceholder: 'Type to filter...',
-        lengthMenu: '<span>Show:</span> _MENU_',
-        paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' }
-    },
-    drawCallback: function () {
-        $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').addClass('dropup');
-    },
-    preDrawCallback: function() {
-        $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
-    }
+  autoWidth: false,
+  columnDefs: [{
+    orderable: false,
+    width: '100px'
+  }],
+  dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+  language: {
+    search: '<span>Filter:</span> _INPUT_',
+    searchPlaceholder: 'Type to filter...',
+    lengthMenu: '<span>Show:</span> _MENU_',
+    paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' }
+  },
+  drawCallback: function () {
+    $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').addClass('dropup');
+  },
+  preDrawCallback: function() {
+    $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
+  }
 });
 
 
 // Basic datatable
 $('.datatable-basic').DataTable();
 
+
+
+
+
+</script>
 
 
 </script>

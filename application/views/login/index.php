@@ -1,7 +1,7 @@
 
 
 <body class="navbar-bottom login-container">
-<!-- Main navbar -->
+	<!-- Main navbar -->
 	<div class="navbar navbar-inverse bg-indigo">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="index.html"><?php echo lang('cnt_1'); ?></a>
@@ -62,18 +62,34 @@
 					</div>
 
 					<div class="form-group has-feedback has-feedback-left">
-						<input type="text" class="form-control" placeholder="Username" name="username">
+						<input type="text" class="form-control" placeholder="NIP anda" name="nip">
 						<div class="form-control-feedback">
 							<i class="icon-user text-muted"></i>
 						</div>
 					</div>
 
 					<div class="form-group has-feedback has-feedback-left">
-						<input type="password" class="form-control" placeholder="Password" name="password">
+						<input type="password" class="form-control" placeholder="Password anda" name="password">
 						<div class="form-control-feedback">
 							<i class="icon-lock2 text-muted"></i>
 						</div>
 					</div>
+
+					<!-- <fieldset class="content-group">
+						<div class="form-group">
+							<label class="control-label col-lg-2"><?php echo lang('cnt_62'); ?></label>
+							<div class="col-lg-12">
+								<select name="instansi" class="form-control">
+									<?php foreach ($instansi as $i): ?>
+										<option value="<?php echo $i->id; ?>"><?php echo $i->instansi; ?></option>
+									<?php endforeach; ?>
+
+								</select>
+							</div>
+						</div>
+
+					</fieldset> -->
+
 
 					<div class="form-group login-options">
 						<div class="row">

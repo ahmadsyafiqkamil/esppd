@@ -2,6 +2,16 @@
 /**
 *
 */
+
+// INSERT INTO master_user (a.user_id, a.user_password, a.user_name,  a.foto, b.nip, b.kolok)
+// SELECT a.user_id, a.user_password, a.user_name,  a.foto, b.nip, b.kolok
+// FROM master_user a
+// INNER JOIN pegawai b ON a.user_id = b.nip
+// INSERT INTO Table1 (Field1, Field2)
+// SELECT a.Field1, b.Field2
+// FROM TableA a
+// INNER JOIN TableB b ON a.ID = b.ID
+
 class Client extends CI_Controller
 {
   public function __construct()
@@ -24,14 +34,36 @@ class Client extends CI_Controller
       'msg' => "",
     ));
   }
+
+
   public function instansi_pro()
   {
+    // $data = array();
+    $logo = "";
     $name = $this->common->nohtml($this->input->post("nama"));
     $alamat = $this->common->nohtml($this->input->post("alamat"));
     $hukum = $this->common->nohtml($this->input->post("hukum"));
     $telp = $this->common->nohtml($this->input->post("telp"));
     $rek = $this->common->nohtml($this->input->post("rek"));
     $pos = $this->common->nohtml($this->input->post("pos"));
+
+    $config['upload_path']    = './assets/upload';
+    $config['allowed_types']  = 'gif|jpg|png';
+    $config['encrypt_name']   = TRUE;
+    // $config['max_size']             = 100;
+    // $config['max_width']            = 1024;
+    // $config['max_height']           = 768;
+
+    $this->load->library('upload', $config);
+    if (!$this->upload->do_upload('logo')) {
+      $this->template->loadContent("client/instansi.php", array(
+        'msg' => "data belum teruplod"
+      ));
+    }else {
+      $file = $this->upload->data();
+      $logo = $config['upload_path'] .$file['file_name'];
+
+    }
     $data = array(
       'nama' => $name,
       'alamat' => $alamat,
@@ -39,9 +71,8 @@ class Client extends CI_Controller
       'no_telp' => $telp,
       'kode_pos' => $pos,
       'kode_rekening' => $rek,
-      // 'logo' => $this->upload->data('full_path'),
+      'logo' => $logo,
     );
-
     if ($this->client_model->instansi_add($data)) {
       $this->template->loadContent("client/instansi.php", array(
         'msg' => "success"
@@ -51,80 +82,122 @@ class Client extends CI_Controller
         'msg' => "tidak sukses"
       ));
     }
-    //   $this->load->library('upload');
-    //   $this->upload->initialize(array(
-    //     "upload_path" => "./uploads/",
-    //     "overwrite" => FALSE,
-    //     "max_filename" => 300,
-    //     "encrypt_name" => TRUE,
-    //     "remove_spaces" => TRUE,
-    //     "allowed_types" => "|jpg|png",
-    //     // "max_size" => $this->settings->info->file_size,
-    //   )
-    // );
-    //
-    // if ( ! $this->upload->do_upload('logo' ))
-    // {
-    //   $error = array('error' => $this->upload->display_errors());
-    //   $this->template->loadContent("client/instansi.php", array(
-    //     'msg' => $error
-    //   ));
-    // }
-    // else {
-    //   // $data = array('upload_data' => $this->upload->data());
-    //   $data = array(
-    //     'nama' => $name,
-    //     'alamat' => $alamat,
-    //     'dasar_hukum' => $hukum,
-    //     'no_telp' => $telp,
-    //     'kode_pos' => $pos,
-    //     'kode_rekening' => $rek,
-    //     'logo' => $this->upload->data('full_path'),
-    //   );
-    //   if ($this->client_model->instansi_add($data)) {
-    //     $this->template->loadContent("client/instansi.php", array(
-    //       'msg' => "success"
-    //     ));
-    //   }else {
-    //     $this->template->loadContent("client/instansi.php", array(
-    //       'msg' => "tidak sukses"
-    //     ));
-    //   }
-    // }
   }
 
   public function pegawai()
   {
-    $pegawai = $this->client_model->pegawai_get();
-    $golongan = $this->client_model->golongan_get();
-    $jabatan = $this->client_model->jabatan_get();
+    $kolok = $this->session->userdata('kolok');
+    $level = $this->session->userdata('level');
+    if ($level == 'User') {
+      $pegawai = $this->client_model->pegawai_get($kolok);
+    }elseif ($level == 'SuperAdmin') {
+      $pegawai = $this->client_model->pegawaiSA_get($kolok);
+    }else {
+
+    }
+    $instansi = $this->client_model->instansi_get();
     $this->template->loadContent("client/pegawai",array(
       'pegawai'=> $pegawai,
-      'golongan'=>$golongan,
-      'jabatan' =>$jabatan
+      'instansi' =>$instansi,
+      'msg' => 3
     ));
   }
 
-  public function pegawai_add($value='')
+  public function pegawai_add()
   {
-    $id = $this->common->nohtml($this->input->post("id"));
+
+    $kolok = $this->session->userdata('kolok');
+    $pegawai = $this->client_model->pegawai_get($kolok);
+    $instansi = $this->client_model->instansi_get();
+
     $nip = $this->common->nohtml($this->input->post("nip"));
     $nama =$this->common->nohtml($this->input->post("nama"));
-    $golongan =$this->common->nohtml($this->input->post("golongan"));
+    $password =$this->common->nohtml($this->input->post("password"));
+    $instansi =$this->common->nohtml($this->input->post("instansi"));
+
+    $config['upload_path']    = './assets/upload';
+    $config['allowed_types']  = 'gif|jpg|png';
+    $config['encrypt_name']   = TRUE;
+    // $config['max_size']             = 100;
+    // $config['max_width']            = 1024;
+    // $config['max_height']           = 768;
+
+    $this->load->library('upload', $config);
+    if (!$this->upload->do_upload('foto')) {
+      $this->template->loadContent("client/pegawai", array(
+        'msg' => "data belum teruplod"
+      ));
+    }else {
+      $file = $this->upload->data();
+      $foto = $config['upload_path'] .$file['file_name'];
+    }
+    $datauser = array(
+      'user_id' => $nip,
+      'user_name' => $nama,
+      'user_password' => md5($password),
+      'foto' => $foto,
+    );
+    $datapegawai = array(
+      'nip18' =>$nip,
+      'nip' => $nip,
+      'kolok' => $instansi,
+    );
+    // $this->client_model->pegawai_add($nip,$nama,$password,$instansi,$foto);
+    $q = $this->client_model->pegawai_add($datauser,$datapegawai);
+    if ($q) {
+      redirect('client/pegawai');
+    }else {
+      $this->template->loadContent("client/pegawai",array(
+        'pegawai'=> $pegawai,
+        'instansi' =>$instansi,
+        'msg' => 0,
+      ));
+    }
 
   }
-  public function pegawai_update($id)
+  public function pegawai_update()
   {
-    $id = $this->common->nohtml($this->input->post("id"));
+
     $nip = $this->common->nohtml($this->input->post("nip"));
     $nama =$this->common->nohtml($this->input->post("nama"));
-    $jabata =$this->common->nohtml($this->input->post("jabatan"));
-    $golongan =$this->common->nohtml($this->input->post("golongan"));
-    $alamat =$this->common->nohtml($this->input->post("alamat"));
-    $this->client_model->pegawai_update($id);
+    $password =$this->common->nohtml($this->input->post("password"));
+    $instansi =$this->common->nohtml($this->input->post("instansi"));
+
+    $config['upload_path']    = './assets/upload';
+    $config['allowed_types']  = 'gif|jpg|png';
+    $config['encrypt_name']   = TRUE;
+    // $config['max_size']             = 100;
+    // $config['max_width']            = 1024;
+    // $config['max_height']           = 768;
+
+    $this->load->library('upload', $config);
+    if (!$this->upload->do_upload('foto')) {
+      $this->template->loadContent("client/instansi.php", array(
+        'msg' => "data belum teruplod"
+      ));
+    }else {
+      $file = $this->upload->data();
+      $foto = $config['upload_path'] .$file['file_name'];
+    }
+    $datauser = array(
+      'user_id' => $nip,
+      'user_name' => $nama,
+      'user_password' => md5($password),
+      'foto' => $foto,
+    );
+    $datapegawai = array(
+      'nip18' =>$nip,
+      'nip' => $nip,
+      'kolok' => $instansi,
+    );
+    $this->client_model->pegawai_update($datauser,$datapegawai,$nip);
+
+    redirect('client/pegawai');
   }
+
   public function pegawai_delete($id)
   {
+
     $this->client_model->pegawai_delete($id);
   }
   public function golongan()
@@ -141,13 +214,13 @@ class Client extends CI_Controller
     $golongan = $this->common->nohtml($this->input->post("golongan"));
   }
 
-  public function golongan_delete()
+  public function golongan_delete($nip)
   {
-
+    $this->client_model->pegawai_delete($nip);
   }
   public function golongan_add()
   {
-    // code...
+
   }
 
   public function transport()
@@ -160,7 +233,10 @@ class Client extends CI_Controller
   }
   public function usulan()
   {
-    $this->template->loadContent("client/usulan",array( ));
+    $usulan = $this->client_model->datausulan_get();
+    $biayalain = $this->client_model->biayalain();
+    $this->template->loadContent("client/usulan",array('usulan' =>$usulan,
+    'biayalain' =>$biayalain));
   }
 
   public function telaah()
@@ -199,6 +275,11 @@ class Client extends CI_Controller
   public function tambah_nota()
   {
     $this->template->loadContent("client/tambah-nota",array( ));
+  }
+
+  public function biaya()
+  {
+    // code...
   }
 }
 ?>

@@ -1,19 +1,16 @@
-
-<button type="button" name="button"></button>
+<!-- <button type="button" name="button"></button> -->
 <div class="content-wrapper">
-  <!-- Javascript sourced data -->
   <div class="panel panel-flat">
     <div class="panel-heading">
       <h5 class="panel-title"><?php echo lang('cnt_20'); ?></h5>
       <div class="heading-elements">
         <ul class="icons-list">
-          <li><a data-action="collapse"></a></li>
+          <!-- <li><a data-action="collapse"></a></li> -->
           <!-- <li><a data-action="reload"></a></li> -->
           <!-- <li><a data-action="close"></a></li> -->
         </ul>
       </div>
     </div>
-
     <div class="panel-body">
       <div class="text-right">
         <button type="button" data-toggle="modal"
@@ -27,7 +24,7 @@
           <th><?php echo lang('cnt_48'); ?></th>
           <th><?php echo lang('cnt_44'); ?></th>
           <th><?php echo lang('cnt_45'); ?></th>
-          <th><?php echo lang('cnt_46'); ?></th>
+          <th><?php echo lang('cnt_62'); ?></th>
           <th class="text-center"><?php echo lang('cnt_47'); ?></th>
         </tr>
       </thead>
@@ -37,17 +34,18 @@
           <?php $i++;?>
           <tr>
             <td><?php echo $i; ?></td>
-            <td><?php echo $p->nip; ?></td>
-            <td><?php echo $p->username; ?></td>
-            <td><?php echo $p->golongan; ?></td>
+            <td><?php echo $p->nip_pegawai; ?></td>
+            <td><?php echo $p->nama_pegawai; ?></td>
+            <td><?php echo $p->nama_instansi; ?></td>
             <td>
               <button type="button"
               data-toggle="modal"
               data-target="#edit-data"
               class="btn btn-info"
-              onclick="ubahDataPegawai( '<?php echo $p->user_id; ?>','<?php echo $p->nip; ?>','<?php echo $p->username; ?>', '<?php echo $p->golongan; ?>')"
+              onclick="ubahDataPegawai( '<?php echo $p->nip_pegawai; ?>','<?php echo $p->nip_pegawai; ?>','<?php echo $p->nama_pegawai; ?>')"
               >Ubah</button>
-              <a href="#" type="button" class="btn btn-danger btn-sm" id="sweet_combine" >Delete</a>
+              <a href="<?php echo base_url('client/pegawai_delete/').$p->nip_pegawai; ?>">
+              <button type="button" class="btn btn-danger btn-sm" id="sweet_warning">delete</button>
             </td>
           </tr>
 
@@ -60,7 +58,6 @@
 
 </div>
 
-<!--  modal update data-->
 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -68,51 +65,55 @@
         <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
         <h4 class="modal-title">Ubah Data</h4>
       </div>
-      <form class="form-horizontal" action="<?php site_url("client/pegawai_update") ?>" method="post" enctype="multipart/form-data" role="form">
+      <?php echo form_open_multipart('client/pegawai_update', 'class="form-horizontal"'); ?>
         <div class="modal-body">
           <div class="form-group">
             <label class="col-lg-2 col-sm-2 control-label"><?php echo lang('cnt_44') ; ?></label>
             <div class="col-lg-10">
-              <input type="hidden" id="id" name="id">
-              <input type="text" class="form-control" id="nip" name="nip" placeholder="Tuliskan NIP">
+              <input type="text" class="form-control" disabled="disabled" id="nip" name="nip" placeholder="Tuliskan NIP">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-2 col-sm-2 control-label"><?php echo lang('cnt_45'); ?></label>
             <div class="col-lg-10">
-              <input type="text" class="form-control" id="nama" name="nama" placeholder="Tuliskan Nama">
+              <input type="text" class="form-control"  id="nama" name="nama" placeholder="Tuliskan Nama">
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-lg-2"><?php echo lang('cnt_56') ?></label>
+            <label class="col-lg-2 col-sm-2 control-label"><?php echo lang('cnt_64'); ?></label>
             <div class="col-lg-10">
-              <select name="select" class="form-control">
-                <?php foreach ($jabatan->result() as $j): ?>
-                  <option value="<?php echo $j->id; ?>"><?php echo $j->jabatan; ?></option>
-                <?php endforeach; ?>
-              </select>
+              <input type="password" class="form-control"  name="password" placeholder="Tuliskan Password">
             </div>
           </div>
+          <fieldset class="content-group">
+  					<div class="form-group">
+  						<label class="control-label col-lg-2"><?php echo lang('cnt_63'); ?></label>
+  						<div class="col-lg-10">
+  							<input type="file" class="file-styled-primary" name="foto" required>
+  						</div>
+  					</div>
+  				</fieldset>
           <div class="form-group">
-            <label class="control-label col-lg-2"><?php echo lang('cnt_46'); ?></label>
+            <label class="control-label col-lg-2"><?php echo lang('cnt_62') ?></label>
             <div class="col-lg-10">
-              <select name="select" class="form-control">
-                <?php foreach ($golongan->result() as $g): ?>
-                  <option value="<?php echo $g->id; ?>"><?php echo $g->golongan; ?></option>
+              <select name="instansi" class="form-control">
+                <?php foreach ($instansi->result() as $j): ?>
+                  <option value="<?php echo $j->id; ?>"><?php echo $j->nama; ?></option>
                 <?php endforeach; ?>
               </select>
             </div>
           </div>
         </div>
+
         <div class="modal-footer">
           <button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
           <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
         </div>
-      </form>
+      <?php echo form_close(); ?>
     </div>
   </div>
 </div>
-<!-- tambah -->
+
 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="tambah-data" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -120,12 +121,11 @@
         <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
         <h4 class="modal-title">Ubah Data</h4>
       </div>
-      <form class="form-horizontal" action="<?php site_url("client/pegawai_update") ?>" method="post" enctype="multipart/form-data" role="form">
+      <?php echo form_open_multipart('client/pegawai_add', 'class="form-horizontal"'); ?>
         <div class="modal-body">
           <div class="form-group">
             <label class="col-lg-2 col-sm-2 control-label"><?php echo lang('cnt_44') ; ?></label>
             <div class="col-lg-10">
-              <!-- <input type="hidden" id="id" name="id"> -->
               <input type="text" class="form-control" id="nip" name="nip" placeholder="Tuliskan NIP">
             </div>
           </div>
@@ -136,29 +136,27 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-lg-2"><?php echo lang('cnt_56') ?></label>
+            <label class="col-lg-2 col-sm-2 control-label"><?php echo lang('cnt_64'); ?></label>
             <div class="col-lg-10">
-              <select name="jabatan" class="form-control">
-                <?php foreach ($jabatan->result() as $j): ?>
-                  <option value="<?php echo $j->id; ?>"><?php echo $j->jabatan; ?></option>
-                <?php endforeach; ?>
-              </select>
+              <input type="password" class="form-control" name="password" placeholder="Tuliskan Password">
             </div>
           </div>
+          <fieldset class="content-group">
+  					<div class="form-group">
+  						<label class="control-label col-lg-2"><?php echo lang('cnt_63'); ?></label>
+  						<div class="col-lg-10">
+  							<input type="file" class="file-styled-primary" name="foto" required>
+  						</div>
+  					</div>
+  				</fieldset>
           <div class="form-group">
-            <label class="control-label col-lg-2"><?php echo lang('cnt_46'); ?></label>
+            <label class="control-label col-lg-2"><?php echo lang('cnt_62') ?></label>
             <div class="col-lg-10">
-              <select name="golongan" class="form-control">
-                <?php foreach ($golongan->result() as $g): ?>
-                  <option value="<?php echo $g->id; ?>"><?php echo $g->golongan; ?></option>
+              <select name="instansi" class="form-control">
+                <?php foreach ($instansi->result() as $j): ?>
+                  <option value="<?php echo $j->unit_id; ?>"><?php echo $j->nama; ?></option>
                 <?php endforeach; ?>
               </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-lg-2"><?php echo lang('cnt_61'); ?></label>
-            <div class="col-lg-10">
-              <textarea rows="5" cols="3" name="alamat" class="form-control" placeholder="Tuliskan Alamat"></textarea>
             </div>
           </div>
         </div>
@@ -168,18 +166,17 @@
           <button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
           <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
         </div>
-      </form>
+      <?php echo form_close(); ?>
     </div>
   </div>
 </div>
-
 <script type="text/javascript">
 
-function ubahDataPegawai (id,nip, nama, golongan){
+function ubahDataPegawai (id,nip, nama){
   $('#id').val(id);
   $('#nip').val(nip);
   $('#nama').val(nama);
-  $('#golongan').val(golongan);
+  // $('#golongan').val(golongan);
 }
 
 $.extend( $.fn.dataTable.defaults, {
@@ -206,9 +203,4 @@ $.extend( $.fn.dataTable.defaults, {
 
 // Basic datatable
 $('.datatable-basic').DataTable();
-
-
-
-
-
 </script>

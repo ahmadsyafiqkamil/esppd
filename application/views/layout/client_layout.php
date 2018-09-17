@@ -27,10 +27,10 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/ui/fullcalendar/fullcalendar.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/extra_fullcalendar.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/form_inputs.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/styling/uniform.min.js"></script>
+	<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/styling/uniform.min.js"></script> -->
 
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/tables/datatables/datatables.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/select2.min.js"></script>
+	<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/select2.min.js"></script> -->
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/datatables_data_sources.js"></script>
 	<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/datatables_basic.js"></script> -->
 
@@ -46,6 +46,12 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/select2.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/components_modals.js"></script>
 
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/styling/uniform.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/styling/switchery.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/styling/switch.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/form_checkboxes_radios.js"></script>
+
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/form_layouts.js"></script>
 
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/core/app.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/ui/ripple.min.js"></script>
@@ -54,7 +60,9 @@
 	<!-- /theme JS files -->
 
 </head>
+<?php
 
+?>
 <body class="navbar-bottom">
 
 	<!-- Main navbar -->
@@ -81,8 +89,8 @@
 
 				<li class="dropdown dropdown-user">
 					<a class="dropdown-toggle" data-toggle="dropdown">
-						<img src="assets/images/placeholder.jpg" alt="">
-						<span>Victoria</span>
+						<img src="<?php echo base_url(); ?>assets/images/placeholder.jpg" alt="">
+						<span><?php  echo $this->session->userdata('nama');?></span>
 						<i class="caret"></i>
 					</a>
 

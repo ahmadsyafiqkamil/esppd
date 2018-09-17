@@ -26,39 +26,61 @@ class Login extends CI_Controller
 }
 public function auth()
 {
-  // $instansi = $this->login_model->instansi()->result();
+  // $data_session = array();
   $nip = $this->common->nohtml($this->input->post('nip'));
   $password = $this->common->nohtml($this->input->post('password'));
 
-  $login = $this->login_model->getUser($nip,$password);
-  if ($login->num_rows() == 0) {
-    $login = $this->login_model->getSuperAdmin($nip,$password);
-  } elseif ($login->num_rows() == 0) {
-    $login = $this->login_model->getAdmin($nip,$password);
-  }else {
-    $this->template->loadContent("login/index.php", array("msg" => 0,
-  ));
-}
+  $loginUser = $this->login_model->getUser($nip,$password);
+  if ($loginUser->num_rows() > 0) {
+    $loginUser=$loginUser->row();
+    $data_session = array(
+      'level' => 'User',
+      'nip'=> $loginUser->nip_pegawai,
+      'nama' => $loginUser->nama_pegawai,
+      'instansi'=>$loginUser->nama_instansi,
+      'kolok' =>$loginUser->kolok_pegawai,
+      'status' => 'login');
+      $this->session->set_userdata($data_session);
+      redirect(site_url("client"));
+    }
+    // else {
+    //   redirect('login');
+    // }
 
-redirect(site_url("client"));
-// $l = $login->row();
+    $loginSA = $this->login_model->getSuperAdmin($nip,$password);
+    if ($loginSA->num_rows() > 0) {
+      $loginSA = $loginSA->row();
+      $data_session = array(
+        'level' => 'SuperAdmin',
+        'nama'=> $loginSA->user_name,
+        'status' => 'login');
+        $this->session->set_userdata($data_session);
+        redirect(site_url("client"));
+      }
+      // else {
+      //   redirect('login');
+      // }
 
-$data_session = array(
-  'status' => 'login');
-  $this->session->set_userdata($data_session);
+      $loginAdmin = $this->login_model->getAdmin($nip,$password);
+      if ($loginAdmin->num_rows() > 0) {
+        $loginAdmin =$loginAdmin->row();
+        $data_session = array(
+          'level' => 'Admin',
+          'nama' => $loginAdmin->user,
+          'instansi'=> $loginAdmin->instansi,
+          'status' => 'login');
+          $this->session->set_userdata($data_session);
+          redirect(site_url("client"));
+        }else {
+          redirect('login');
+        }
+      }
 
-  //   if ($loginNIP->num_rows() > 0) {
-  //     $this->session->set_userdata($data_session);
-  //     redirect(site_url("client"));
-  //   }else {
-  //     $this->template->loadContent("login/index.php", array("msg" => 0,
-  //   ));
-  // }
-}
-public function logout($value='')
-{
-  $this->session->sess_destroy();
-  redirect(base_url('login'));
-}
-}
-?>
+
+      public function logout()
+      {
+        $this->session->sess_destroy();
+        redirect(base_url('login'));
+      }
+    }
+    ?>

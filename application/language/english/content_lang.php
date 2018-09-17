@@ -95,5 +95,28 @@ $lang['cnt_60'] = "Jabatan";
 $lang['cnt_61'] = "Alamat";
 
 $lang['cnt_62'] = "Instansi";
+$lang['cnt_63'] = "Foto";
+$lang['cnt_64'] = "Password";
+
+// tambah nota
+
+$lang['cnt_65'] = "Form Usulan Perjalanan Dinas";
+$lang['cnt_66'] = "Pegawai yang diusulkan akan melaksanakan perjalanan dinas";
+$lang['cnt_67'] = "Usulan Pegawai Pengikut Perjalanan Dinas";
+$lang['cnt_68'] = "Tempat Keberangkatan";
+$lang['cnt_69'] = "Tempat Tujuan Perjalanan Dinas";
+$lang['cnt_70'] = "Data Lain Yang harus diisi";
+$lang['cnt_71'] = "Kebutuhan Biaya Lain";
+
+$lang['cnt_72'] = "Perjalanan Dinas Berdasarkan";
+$lang['cnt_73'] = "Kegiatan";
+$lang['cnt_74'] = "Undangan";
+
+// Usulan
+$lang['cnt_75'] = "Tujuan";
+$lang['cnt_76'] = "Berdasarkan";
+$lang['cnt_77'] = "Maksud";
+$lang['cnt_78'] = "Biaya Lain";
+$lang['cnt_79'] = "Status";
 
 ?>

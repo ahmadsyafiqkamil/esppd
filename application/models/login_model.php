@@ -22,14 +22,14 @@ class Login_model extends CI_Model
   {
     return $this->db->select("user_id,user_name")
     ->where("user_id" ,$nip)
-    ->where("user_password",$password)
+    ->where("user_password",md5($password))
     ->get("master_user");
   }
 
   public function getAdmin($nip,$password)
   {
-    return $this->db->select("master_user.user_id ,instansi.nama")
-    ->join("instansi", "master_user.user_id = instansi.unit_id ")
+    return $this->db->select("master_user.user_id as user,instansi.nama as instansi")
+    ->join("instansi", "master_user.user_id = instansi.unit_id ","left")
     ->where('master_user.user_id', $nip)
     ->where('master_user.user_password', md5($password))
     ->get("master_user");

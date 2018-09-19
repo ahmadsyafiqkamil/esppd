@@ -35,6 +35,7 @@ public function auth()
     $loginUser=$loginUser->row();
     $data_session = array(
       'level' => 'User',
+      'user_level' =>$loginUser->level,
       'nip'=> $loginUser->nip_pegawai,
       'nama' => $loginUser->nama_pegawai,
       'instansi'=>$loginUser->nama_instansi,
@@ -52,6 +53,7 @@ public function auth()
       $loginSA = $loginSA->row();
       $data_session = array(
         'level' => 'SuperAdmin',
+        'user_level' =>$loginSA->user_level,
         'nama'=> $loginSA->user_name,
         'status' => 'login');
         $this->session->set_userdata($data_session);
@@ -67,6 +69,7 @@ public function auth()
         $data_session = array(
           'level' => 'Admin',
           'nama' => $loginAdmin->user,
+          'user_level' =>$loginAdmin->level,
           'instansi'=> $loginAdmin->instansi,
           'status' => 'login');
           $this->session->set_userdata($data_session);

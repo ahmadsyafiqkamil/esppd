@@ -1,4 +1,3 @@
-<!-- <button type="button" name="button"></button> -->
 <div class="content-wrapper">
   <div class="panel panel-flat">
     <div class="panel-heading">
@@ -45,27 +44,27 @@
               onclick="ubahDataPegawai( '<?php echo $p->nip_pegawai; ?>','<?php echo $p->nip_pegawai; ?>','<?php echo $p->nama_pegawai; ?>')"
               >Ubah</button>
               <a href="<?php echo base_url('client/pegawai_delete/').$p->nip_pegawai; ?>">
-              <button type="button" class="btn btn-danger btn-sm" id="sweet_warning">delete</button>
-            </td>
-          </tr>
+                <button type="button" class="btn btn-danger btn-sm" id="sweet_warning">delete</button>
+              </td>
+            </tr>
 
-        <?php endforeach; ?>
-      </tbody>
-    </table>
-    <!-- /basic datatable -->
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+      <!-- /basic datatable -->
+    </div>
+    <!-- /javascript sourced data -->
+
   </div>
-  <!-- /javascript sourced data -->
 
-</div>
-
-<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-        <h4 class="modal-title">Ubah Data</h4>
-      </div>
-      <?php echo form_open_multipart('client/pegawai_update', 'class="form-horizontal"'); ?>
+  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+          <h4 class="modal-title">Ubah Data</h4>
+        </div>
+        <?php echo form_open_multipart('client/pegawai_update', 'class="form-horizontal"'); ?>
         <div class="modal-body">
           <div class="form-group">
             <label class="col-lg-2 col-sm-2 control-label"><?php echo lang('cnt_44') ; ?></label>
@@ -86,13 +85,13 @@
             </div>
           </div>
           <fieldset class="content-group">
-  					<div class="form-group">
-  						<label class="control-label col-lg-2"><?php echo lang('cnt_63'); ?></label>
-  						<div class="col-lg-10">
-  							<input type="file" class="file-styled-primary" name="foto" required>
-  						</div>
-  					</div>
-  				</fieldset>
+            <div class="form-group">
+              <label class="control-label col-lg-2"><?php echo lang('cnt_63'); ?></label>
+              <div class="col-lg-10">
+                <input type="file" class="file-styled-primary" name="foto" required>
+              </div>
+            </div>
+          </fieldset>
           <div class="form-group">
             <label class="control-label col-lg-2"><?php echo lang('cnt_62') ?></label>
             <div class="col-lg-10">
@@ -109,19 +108,19 @@
           <button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
           <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
         </div>
-      <?php echo form_close(); ?>
+        <?php echo form_close(); ?>
+      </div>
     </div>
   </div>
-</div>
 
-<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="tambah-data" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-        <h4 class="modal-title">Ubah Data</h4>
-      </div>
-      <?php echo form_open_multipart('client/pegawai_add', 'class="form-horizontal"'); ?>
+  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="tambah-data" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+          <h4 class="modal-title">Ubah Data</h4>
+        </div>
+        <?php echo form_open_multipart('client/pegawai_add', 'class="form-horizontal"'); ?>
         <div class="modal-body">
           <div class="form-group">
             <label class="col-lg-2 col-sm-2 control-label"><?php echo lang('cnt_44') ; ?></label>
@@ -142,13 +141,13 @@
             </div>
           </div>
           <fieldset class="content-group">
-  					<div class="form-group">
-  						<label class="control-label col-lg-2"><?php echo lang('cnt_63'); ?></label>
-  						<div class="col-lg-10">
-  							<input type="file" class="file-styled-primary" name="foto" required>
-  						</div>
-  					</div>
-  				</fieldset>
+            <div class="form-group">
+              <label class="control-label col-lg-2"><?php echo lang('cnt_63'); ?></label>
+              <div class="col-lg-10">
+                <input type="file" class="file-styled-primary" name="foto" required>
+              </div>
+            </div>
+          </fieldset>
           <div class="form-group">
             <label class="control-label col-lg-2"><?php echo lang('cnt_62') ?></label>
             <div class="col-lg-10">
@@ -166,41 +165,41 @@
           <button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
           <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
         </div>
-      <?php echo form_close(); ?>
+        <?php echo form_close(); ?>
+      </div>
     </div>
   </div>
-</div>
-<script type="text/javascript">
+  <script type="text/javascript">
 
-function ubahDataPegawai (id,nip, nama){
-  $('#id').val(id);
-  $('#nip').val(nip);
-  $('#nama').val(nama);
-  // $('#golongan').val(golongan);
-}
-
-$.extend( $.fn.dataTable.defaults, {
-  autoWidth: false,
-  columnDefs: [{
-    orderable: false,
-    width: '100px'
-  }],
-  dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
-  language: {
-    search: '<span>Filter:</span> _INPUT_',
-    searchPlaceholder: 'Type to filter...',
-    lengthMenu: '<span>Show:</span> _MENU_',
-    paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' }
-  },
-  drawCallback: function () {
-    $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').addClass('dropup');
-  },
-  preDrawCallback: function() {
-    $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
+  function ubahDataPegawai (id,nip, nama){
+    $('#id').val(id);
+    $('#nip').val(nip);
+    $('#nama').val(nama);
+    // $('#golongan').val(golongan);
   }
-});
+
+  $.extend( $.fn.dataTable.defaults, {
+    autoWidth: false,
+    columnDefs: [{
+      orderable: false,
+      width: '100px'
+    }],
+    dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+    language: {
+      search: '<span>Filter:</span> _INPUT_',
+      searchPlaceholder: 'Type to filter...',
+      lengthMenu: '<span>Show:</span> _MENU_',
+      paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' }
+    },
+    drawCallback: function () {
+      $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').addClass('dropup');
+    },
+    preDrawCallback: function() {
+      $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
+    }
+  });
 
 
-// Basic datatable
-$('.datatable-basic').DataTable();
+  // Basic datatable
+  $('.datatable-basic').DataTable();
 </script>

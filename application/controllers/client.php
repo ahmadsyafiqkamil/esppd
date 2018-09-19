@@ -74,12 +74,14 @@ class Client extends CI_Controller
       'logo' => $logo,
     );
     if ($this->client_model->instansi_add($data)) {
+      $this->session->set_flashdata('notif', '<div class="alert alert-success" role="alert"> Data Berhasil diubah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
       $this->template->loadContent("client/instansi.php", array(
-        'msg' => "success"
+
       ));
     }else {
+      $this->session->set_flashdata('notif', '<div class="alert alert-danger" role="alert"> Data Berhasil diubah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
       $this->template->loadContent("client/instansi.php", array(
-        'msg' => "tidak sukses"
+
       ));
     }
   }
@@ -93,7 +95,7 @@ class Client extends CI_Controller
     }elseif ($level == 'SuperAdmin') {
       $pegawai = $this->client_model->pegawaiSA_get($kolok);
     }else {
-
+      // admin
     }
     $instansi = $this->client_model->instansi_get();
     $this->template->loadContent("client/pegawai",array(
@@ -233,53 +235,74 @@ class Client extends CI_Controller
   }
   public function usulan()
   {
-    $usulan = $this->client_model->datausulan_get();
-    $biayalain = $this->client_model->biayalain();
-    $this->template->loadContent("client/usulan",array('usulan' =>$usulan,
-    'biayalain' =>$biayalain));
-  }
+    $level = $this->session->userdata('level');
 
-  public function telaah()
-  {
-    $this->template->loadContent("client/telaah.php", array());
-  }
-  public function tugas()
-  {
-    $this->template->loadContent("client/tugas",array( ));
-  }
-  public function perjalanan()
-  {
-    $this->template->loadContent("client/perjalanan",array( ));
-  }
+    if ($level == 'User') {
+      $usulan = $this->client_model->datausulan_get();
+      $biayalain = $this->client_model->biayalain();
+      $this->template->loadContent("client/usulan",array(
+        'usulan' =>$usulan,
+        'biayalain' =>$biayalain));
 
-  public function kwitansi()
-  {
-    $this->template->loadContent("client/kwitansi.php", array());
-  }
-  public function riil()
-  {
-    $this->template->loadContent("client/riil",array( ));
-  }
-  public function rtahun()
-  {
-    $this->template->loadContent("client/rekap-tahunan",array( ));
-  }
-  public function rbulan()
-  {
-    $this->template->loadContent("client/rekap-bulanan",array( ));
-  }
-  public function log()
-  {
-    $this->template->loadContent("client/log",array( ));
-  }
-  public function tambah_nota()
-  {
-    $this->template->loadContent("client/tambah-nota",array( ));
-  }
+      }elseif ($level == 'SuperAdmin') {
+        $usulan = $this->client_model->datausulan_get();
+        $biayalain = $this->client_model->biayalain();
+        $this->template->loadContent("client/usulan",array(
+          'usulan' =>$usulan,
+          'biayalain' =>$biayalain));
 
-  public function biaya()
-  {
-    // code...
+        }else {
+          // admin
+        }
+
+      }
+
+      public function telaah()
+      {
+        $telaah = $this->client_model->datatelaah();
+        // $sppd = $this->client_model->dataSPPD();
+        $this->template->loadContent("client/telaah.php", array(
+          'telaah' => $telaah,
+          // 'sppd' => $sppd,
+      ));
+    }
+    public function tugas()
+    {
+      $this->template->loadContent("client/tugas",array( ));
+    }
+    public function perjalanan()
+    {
+      $this->template->loadContent("client/perjalanan",array( ));
+    }
+
+    public function kwitansi()
+    {
+      $this->template->loadContent("client/kwitansi.php", array());
+    }
+    public function riil()
+    {
+      $this->template->loadContent("client/riil",array( ));
+    }
+    public function rtahun()
+    {
+      $this->template->loadContent("client/rekap-tahunan",array( ));
+    }
+    public function rbulan()
+    {
+      $this->template->loadContent("client/rekap-bulanan",array( ));
+    }
+    public function log()
+    {
+      $this->template->loadContent("client/log",array( ));
+    }
+    public function tambah_nota()
+    {
+      $this->template->loadContent("client/tambah-nota",array( ));
+    }
+
+    public function biaya()
+    {
+      // code...
+    }
   }
-}
-?>
+  ?>

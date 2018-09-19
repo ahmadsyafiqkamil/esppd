@@ -14,7 +14,8 @@
 		</div>
 
 		<div class="panel-body">
-			<?php echo $msg; ?>
+			<!-- <?php echo $msg; ?> -->
+			<?=$this->session->flashdata('notif')?>
 			<?php echo form_open_multipart('client/instansi_pro', 'class="form-horizontal"'); ?>
 			<fieldset class="content-group">
 				<div class="form-group">

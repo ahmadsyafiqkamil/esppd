@@ -118,5 +118,17 @@ $lang['cnt_76'] = "Berdasarkan";
 $lang['cnt_77'] = "Maksud";
 $lang['cnt_78'] = "Biaya Lain";
 $lang['cnt_79'] = "Status";
+$lang['cnt_80'] = "Undangan";
+$lang['cnt_81'] = "Kegiatan";
+$lang['cnt_82'] = "Data Usulan Perjalanan Dinas";
+$lang['cnt_83'] = "Tambah data usulan";
 
+$lang['cnt_84'] = "Tidak ada";
+$lang['cnt_85'] = "Ada";
+
+// Telaah
+
+$lang['cnt_86'] = "Perihal";
+$lang['cnt_87'] = "Jadwal Perjalanan";
+$lang['cnt_88'] = "Data Telaah Staf";
 ?>

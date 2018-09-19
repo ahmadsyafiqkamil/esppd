@@ -31,7 +31,7 @@
 
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/tables/datatables/datatables.min.js"></script>
 	<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/select2.min.js"></script> -->
-	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/datatables_data_sources.js"></script>
+	<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/datatables_data_sources.js"></script> -->
 	<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/datatables_basic.js"></script> -->
 
 
@@ -52,6 +52,18 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/form_checkboxes_radios.js"></script>
 
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/form_layouts.js"></script>
+
+
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/core/libraries/jquery_ui/core.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/selectboxit.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/bootstrap_select.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/notifications/noty.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/notifications/jgrowl.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/colors_warning.js"></script>
+
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/components_notifications_pnotify.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/notifications/pnotify.min.js"></script>
 
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/core/app.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/ui/ripple.min.js"></script>

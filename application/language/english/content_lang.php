@@ -131,4 +131,24 @@ $lang['cnt_85'] = "Ada";
 $lang['cnt_86'] = "Perihal";
 $lang['cnt_87'] = "Jadwal Perjalanan";
 $lang['cnt_88'] = "Data Telaah Staf";
+
+// Tugas
+
+$lang['cnt_89'] = "No.SPT";
+$lang['cnt_90'] = "Nama Pegawai";
+$lang['cnt_91'] = "Tugas";
+$lang['cnt_92'] = "Dasar Hukum";
+$lang['cnt_93'] = "Cetak";
+$lang['cnt_94'] = "SPPD";
+$lang['cnt_95'] = 'Data Surat Perintah Tugas';
+
+// sppd
+
+$lang['cnt_96'] = "Data Surat Perintah Perjalanan Dinas";
+$lang['cnt_97'] = "No SPPD";
+$lang['cnt_98'] = "Mata Anggaran";
+
+
+
+
 ?>

@@ -268,11 +268,21 @@ class Client extends CI_Controller
     }
     public function tugas()
     {
-      $this->template->loadContent("client/tugas",array( ));
+      $data = $this->client_model->spt();
+      $instansi = $this->client_model->instansi_get();
+
+      $this->template->loadContent("client/tugas",array(
+        'dataSPPD' => $data,
+        'instansi' => $instansi,
+
+      ));
     }
     public function perjalanan()
     {
-      $this->template->loadContent("client/perjalanan",array( ));
+      $data = $this->client_model->sppd();
+      $this->template->loadContent("client/perjalanan",array(
+        'sppd' => $data,
+      ));
     }
 
     public function kwitansi()

@@ -111,15 +111,39 @@ class Client_Model extends CI_Model
     ->join("telaah_staf", "telaah_staf.sppd_id = sppd.id")
     ->get('public.sppd');
   }
-  public function dataSPPD()
+  public function spt()
   {
-    return $this->db->select(
-      'id, instansi_id, kota_id, berangkat_dari, telaah_id, jenis_transport_id,
-      no_sppd, no_spt, mata_anggaran, tugas, tanggal_mulai, tanggal_selesai,
-      lama, status, is_kegiatan, created_at, updated_at, deleted_at,
-      is_telaah, bidang, master_ttd_id')
-      ->get('sppd');
-    }
+    return $this->db->select('
+    sppd.no_spt as no_spd,
+    array_to_json(array_agg(master_user.user_name )) as nama_pegawai,
+    kota.nama as nama_kota ,
+    sppd.tugas as tugas
+    ')
+    ->join("kota", "sppd.kota_id = kota.id")
+    ->join("detil_sppd", "detil_sppd.sppd_id = sppd.id")
+    ->join("kwitansi", "kwitansi.id = detil_sppd.kwitansi_id")
+    ->join("master_user","master_user.user_id = detil_sppd.nip")
+    ->order_by("no_spd")
+    ->group_by(' sppd.no_spt,kota.nama,sppd.tugas')
+    ->where('sppd.no_spt IS not NULL', null, false)
+    ->get("sppd");
   }
 
-  ?>
+  public function sppd()
+  {
+    return $this->db->select('
+    sppd.no_spt as no_spd , sppd.tugas as tugas , kota.nama as nama_kota , sppd.mata_anggaran as mata_anggaran
+    ')
+    ->join("kota", "sppd.kota_id = kota.id")
+    ->join("detil_sppd", "detil_sppd.sppd_id = sppd.id")
+    ->join("kwitansi", "kwitansi.id = detil_sppd.kwitansi_id")
+    ->join("master_user","master_user.user_id = detil_sppd.nip")
+    ->order_by("no_spd")
+    ->group_by(' sppd.no_spt,kota.nama,sppd.tugas,sppd.mata_anggaran')
+    ->where('sppd.no_spt IS not NULL', null, false)
+    ->get("sppd");
+  }
+
+}
+
+?>

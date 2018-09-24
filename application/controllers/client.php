@@ -93,7 +93,7 @@ class Client extends CI_Controller
     if ($level == 'User') {
       $pegawai = $this->client_model->pegawai_get($kolok);
     }elseif ($level == 'SuperAdmin') {
-      $pegawai = $this->client_model->pegawaiSA_get($kolok);
+      $pegawai = $this->client_model->pegawaiSA_get();
     }else {
       // admin
     }
@@ -307,12 +307,28 @@ class Client extends CI_Controller
     }
     public function tambah_nota()
     {
-      $this->template->loadContent("client/tambah-nota",array( ));
+      $kolok = $this->session->userdata('kolok');
+      $level = $this->session->userdata('level');
+      if ($level == 'User') {
+        $pegawai = $this->client_model->pegawai_get($kolok);
+      }elseif ($level == 'SuperAdmin') {
+        $pegawai = $this->client_model->pegawaiSA_get();
+      }else {
+        // admin
+      }
+      $this->template->loadContent("client/tambah-nota",array(
+        'pegawai' => $pegawai,
+       ));
     }
 
     public function biaya()
     {
       // code...
+    }
+    public function coba()
+    {
+      // $this->load->view('client/coba');
+      $this->template->loadContent('client/coba' ,array( ));
     }
   }
   ?>

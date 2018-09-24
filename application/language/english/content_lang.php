@@ -148,6 +148,12 @@ $lang['cnt_96'] = "Data Surat Perintah Perjalanan Dinas";
 $lang['cnt_97'] = "No SPPD";
 $lang['cnt_98'] = "Mata Anggaran";
 
+// tambah_nota
+
+$lang['cnt_99'] = 'Nama Pegawai';
+$lang['cnt_100'] = 'Tambah Pegawai';
+$lang['cnt_101'] = 'Hapus Pegawai';
+
 
 
 

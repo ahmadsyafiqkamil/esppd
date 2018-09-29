@@ -1,32 +1,45 @@
-<!-- <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title>Form Dinamis</title>
-<!-- <link href="style.css" rel="stylesheet" type="text/css" /> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-<script language="javascript">
-   function tambahHobi() {
-     var idf = document.getElementById("idf").value;
-     var stre;
-     stre="<p id='srow" + idf + "'><input type='text' size='40' name='rincian_hobi[]' placeholder='Masukkan Hobi' /> <a href='#' style=\"color:#3399FD;\" onclick='hapusElemen(\"#srow" + idf + "\"); return false;'>Hapus</a></p>";
-     $("#divHobi").append(stre);
-     idf = (idf-1) + 2;
-     document.getElementById("idf").value = idf;
-   }
-   function hapusElemen(idf) {
-     $(idf).remove();
-   }
+
+
+    <table class="table datatable-basic">
+      <thead>
+        <tr>
+          <th><?php echo lang('cnt_97'); ?></th>
+          <th><?php echo lang('cnt_91'); ?></th>
+          <th><?php echo lang('cnt_69'); ?></th>
+          <th><?php echo lang('cnt_98'); ?></th>
+          <th class="text-center"><?php echo lang('cnt_47'); ?></th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+
+
+
+<script type="text/javascript">
+$.extend( $.fn.dataTable.defaults, {
+  autoWidth: false,
+  columnDefs: [{
+    orderable: false,
+    width: '100px'
+  }],
+  dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+  language: {
+    search: '<span>Filter:</span> _INPUT_',
+    searchPlaceholder: 'Type to filter...',
+    lengthMenu: '<span>Show:</span> _MENU_',
+    paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' }
+  },
+  drawCallback: function () {
+    $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').addClass('dropup');
+  },
+  preDrawCallback: function() {
+    $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
+  }
+});
+
+
+// Basic datatable
+$('.datatable-basic').DataTable();
 </script>
-</head>
-<body>
-<div id="container">
-<h2>Contoh Form Dinamis</h2>
-<form method="post" action="proses.php">
-   <input id="idf" value="1" type="hidden" />
-   <p> Nama : <input name="nama" type="text" id="nama" size="40"> </p>
-   <button type="button" onclick="tambahHobi(); return false;">Tambah Rincian Hobi</button>
-   <div id="divHobi"></div>
-   <button type="submit">Simpan</button>
-  </form>
-</div>
-<!-- </body>
-</html> -->

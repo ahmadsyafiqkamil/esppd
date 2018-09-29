@@ -278,8 +278,8 @@ $(function() {
     // Success alert
     $('#sweet_success').on('click', function() {
         swal({
-            title: "Good job!",
-            text: "You clicked the button!",
+            title: "",
+            text: "Anda Menyetujui Usulan Perjalanan Dinas",
             confirmButtonColor: "#66BB6A",
             type: "success"
         });

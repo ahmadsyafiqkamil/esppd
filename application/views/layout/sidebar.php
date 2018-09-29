@@ -47,8 +47,8 @@
           <li>
             <a href="#"><i class="icon-stack3"></i> <span><?php echo lang('cnt_25'); ?></span></a>
             <ul>
-              <li><a href="<?php echo site_url("client/usulan") ?>"><?php echo lang('cnt_26'); ?></a></li>
-              <li><a href="<?php echo site_url("client/telaah") ?>"><?php echo lang('cnt_27'); ?></a></li>
+              <li><a href="<?php echo site_url("client/usulan_baru") ?>"><?php echo lang('cnt_26'); ?></a></li>
+              <li><a href="<?php echo site_url("client/telaah_baru") ?>"><?php echo lang('cnt_27'); ?></a></li>
               <li><a href="<?php echo site_url("client/tugas") ?>"><?php echo lang('cnt_28'); ?></a></li>
               <li><a href="<?php echo site_url("client/perjalanan") ?>"><?php echo lang('cnt_29'); ?></a></li>
             </ul>

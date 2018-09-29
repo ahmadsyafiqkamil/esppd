@@ -117,9 +117,9 @@ $lang['cnt_75'] = "Tujuan";
 $lang['cnt_76'] = "Berdasarkan";
 $lang['cnt_77'] = "Maksud";
 $lang['cnt_78'] = "Biaya Lain";
-$lang['cnt_79'] = "Status";
-$lang['cnt_80'] = "Undangan";
-$lang['cnt_81'] = "Kegiatan";
+$lang['cnt_79'] = "Status Telaah";
+$lang['cnt_80'] = "Undangan"; //is_kegiatan 0
+$lang['cnt_81'] = "Kegiatan";//is_kegiatan 1
 $lang['cnt_82'] = "Data Usulan Perjalanan Dinas";
 $lang['cnt_83'] = "Tambah data usulan";
 
@@ -128,7 +128,7 @@ $lang['cnt_85'] = "Ada";
 
 // Telaah
 
-$lang['cnt_86'] = "Perihal";
+$lang['cnt_86'] = "Hasil Telaah";
 $lang['cnt_87'] = "Jadwal Perjalanan";
 $lang['cnt_88'] = "Data Telaah Staf";
 
@@ -155,6 +155,34 @@ $lang['cnt_100'] = 'Tambah Pegawai';
 $lang['cnt_101'] = 'Hapus Pegawai';
 
 
+$lang['cnt_102'] = 'Provinsi';
+$lang['cnt_103'] = 'Kota';
 
+
+$lang['cnt_104'] = 'PPTK';
+$lang['cnt_105'] = 'Jenis Transportasi';
+$lang['cnt_106'] = 'Mata Anggaran';
+$lang['cnt_107'] = 'Maksud Perjalanan';
+$lang['cnt_108'] = 'Mulai Tanggal';
+$lang['cnt_109'] = 'Selesai Tanggal';
+$lang['cnt_110'] = 'Ya';
+$lang['cnt_111'] = 'Tidak';
+$lang['cnt_112'] = 'Kebutuhan biaya lain';
+$lang['cnt_113'] = 'Biaya Lain yang dibutuhkan :';
+$lang['cnt_114'] = 'Nama';
+$lang['cnt_115'] = 'Tambah Biaya Lain';
+$lang['cnt_116'] = 'Form Telaah';
+$lang['cnt_117'] = 'Detail Telaah';
+// detail telaah
+$lang['cnt_118'] = 'ID SPPD';
+$lang['cnt_119'] = 'Kota';
+$lang['cnt_120'] = 'Tugas';
+$lang['cnt_121'] = 'Jenis Kegiatan';
+$lang['cnt_122'] = 'Pegawai yang diusulkan';
+$lang['cnt_123'] = 'NIP';
+$lang['cnt_124'] = 'Nama';
+$lang['cnt_125'] = 'Pegawai pengikut';
+$lang['cnt_126'] = 'Hasil Telaah';
+$lang['cnt_127'] = 'Input Telaah';
 
 ?>

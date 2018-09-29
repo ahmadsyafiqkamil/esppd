@@ -10,7 +10,9 @@
         </ul>
       </div>
     </div>
+
     <div class="panel-body">
+      <?=$this->session->flashdata('notif')?>
       <div class="text-right">
         <a href="<?php echo base_url(); ?>client/tambah_nota" type="button" class="btn btn-primary" onclick=""><?php echo lang('cnt_83'); ?> </a>
       </div>
@@ -22,7 +24,7 @@
           <th><?php echo lang('cnt_48'); ?></th>
           <th><?php echo lang('cnt_75'); ?></th>
           <th><?php echo lang('cnt_76'); ?></th>
-          <th><?php echo lang('cnt_77'); ?></th>
+          <!-- <th><?php echo lang('cnt_77'); ?></th> -->
           <th><?php echo lang('cnt_78'); ?></th>
           <th><?php echo lang('cnt_79'); ?></th>
           <th class="text-center"><?php echo lang('cnt_47'); ?></th>
@@ -41,11 +43,7 @@
               echo lang('cnt_81');
             } ?></td>
             <td><?php echo $usul->tugas; ?></td>
-            <td><?php if (empty($biayalain->result())) {
-              echo '<a type="button" class="btn bg-warning-400" disabled="disabled"> Tidak ada </a>';
-            }else {
-              echo '<a type="button" class="btn bg-blue-400"> Ada </a>';
-            }?></td>
+            <!-- <td></td> -->
             <td>
               <?php switch ($usul->status_sppd) {
                 case 0:
@@ -62,35 +60,47 @@
                 break;
               } ?></td>
               <td>
-                <?php if ($usul->status_sppd == 1) {
-                  if ($usul->kegiatan == 1) {
-                    if ($usul->sppd_telaah == 1) {
-                      echo "<span class='label bg-success'>Telah di telaah</span>";
-                    }else {
-                      echo "<span class='label bg-success'>Buat Telaah</span>";
-                    }
-                  }elseif (!$usul->spt_sppd ) {
-                    echo "<span class='label bg-success'>Buat SPT</span>";
-                  }
-                }else {
-                  $level = $this->session->userdata('level');
-                  if ($level == 'User') {
-                    echo '<a type="button" class="btn bg-teal-400"> Ubah </a>';
-                    echo '<a type="button" class="btn bg-green-400"> Hapus </a>';
+                <ul class="icons-list">
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <i class="icon-menu9"></i>
+                    </a>
 
-                  }elseif ($level == 'SuperAdmin') {
-                    echo '<a type="button" class="btn bg-teal-400"> Ubah </a>';
-                    echo '<a type="button" class="btn bg-green-400"> Hapus </a>';
-                    echo '<a type="button" class="btn bg-brown-400"> Setujui </a>';
-                    echo '<a type="button" class="btn bg-grey-400"> Tolak </a>';
-                  }else {
-                    echo '<a type="button" class="btn bg-teal-400"> Ubah </a>';
-                    echo '<a type="button" class="btn bg-green-400"> Hapus </a>';
-                    echo '<a type="button" class="btn bg-brown-400"> Setujui </a>';
-                    echo '<a type="button" class="btn bg-grey-400"> Tolak </a>';
-                  }
-                } ?>
-                <a type="button" class="btn bg-blue-400"> Detail </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <!-- <li><a class="glyphicon glyphicon-list-alt"> Lihat </a></li> -->
+
+                      <!-- <?php if ($usul->status_sppd == 1) {
+                        if ($usul->kegiatan == 1) {
+                          if ($usul->sppd_telaah == 1) {
+                            echo "<li><span class='label bg-success'>Telah di telaah</span></li>";
+                          }else {
+                            echo "<li><label class='label bg-success'>Buat Telaah</label></li>";
+                          }
+                        }elseif (!$usul->spt_sppd ) {
+                          echo "<li><span class='label bg-success'>Buat SPT</span></li>";
+                        }
+                      }else {
+                        $level = $this->session->userdata('level');
+                        if ($level == 'User') {
+                          echo '<li><a"> Ubah </a></li>';
+                          echo '<li><a "> Hapus </a></li>';
+
+                        }elseif ($level == 'SuperAdmin') {
+                          echo '<li><a > Ubah </a></li>';
+                          echo '<li><a > Hapus </a></li>';
+                          echo '<li><a > Setujui </a></li>';
+                          echo '<li><a > Tolak </a></li>';
+                        }else {
+                          echo '<li><a > Ubah </a></li>';
+                          echo '<li><a > Hapus </a></li>';
+                          echo '<li><a > Setujui </a></li>';
+                          echo '<li><a > Tolak </a></li>';
+                        }
+                      } ?> -->
+                      <li> <a > Detail </a></li>
+                    </ul>
+                  </li>
+                </ul>
               </td>
             </tr>
           <?php endforeach; ?>

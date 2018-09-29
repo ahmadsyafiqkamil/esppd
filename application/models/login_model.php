@@ -29,7 +29,10 @@ class Login_model extends CI_Model
 
   public function getAdmin($nip,$password)
   {
-    return $this->db->select("master_user.user_id as user,master_user.user_level as level,instansi.nama as instansi")
+    return $this->db->select("master_user.user_id as user,
+    master_user.user_level as level,
+    instansi.nama as instansi",
+    'instansi.unit_id as id_instansi')
     ->join("instansi", "master_user.user_id = instansi.unit_id ","left")
     ->where('master_user.user_id', $nip)
     ->where('master_user.user_password', md5($password))

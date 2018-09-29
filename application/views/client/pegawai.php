@@ -51,10 +51,7 @@
           <?php endforeach; ?>
         </tbody>
       </table>
-      <!-- /basic datatable -->
     </div>
-    <!-- /javascript sourced data -->
-
   </div>
 
   <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-data" class="modal fade">

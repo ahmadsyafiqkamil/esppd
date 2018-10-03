@@ -184,5 +184,14 @@ $lang['cnt_124'] = 'Nama';
 $lang['cnt_125'] = 'Pegawai pengikut';
 $lang['cnt_126'] = 'Hasil Telaah';
 $lang['cnt_127'] = 'Input Telaah';
+$lang['cnt_128'] = 'Laporan';
+$lang['cnt_129'] = 'Laporan Anggaran';
+
+// kwitansi
+
+$lang['cnt_130'] = 'No Kwitansi';
+$lang['cnt_131'] = 'No SPPD';
+$lang['cnt_132'] = 'Total Biaya';
+$lang['cnt_133'] = 'Status SPPD';
 
 ?>

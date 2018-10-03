@@ -27,40 +27,13 @@
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($kwitansi->result() as $kw ): ?>
-          <tr>
-            <td><?php echo $kw->no_kwitansi; ?></td>
-            <td><?php echo $kw->total_uang; ?></td>
-            <td><?php echo $kw->no_sppd; ?></td>
-            <td><?php switch ($kw->status_sppd) {
-              case 1:
-              echo "sudah ditelaah";
-              break;
-              case 2:
-              echo "Disetujui Kepala Dinas";
-              break;
-              case 3:
-              echo "Ditolak Kepala Dinas";
-              break;
-              case 4:
-              echo "Lanjut SPT";
-              break;
-              case 5:
-                echo "SPPD Ditolak";
-                break;
-                case 6:
-                  echo "SPPD Rampun";
-                  break;
-                  case 7:
-                    echo "Sudah Pulang dari Perjalanan Dinas";
-                    break;
-              default:
-              echo "Belum Ditelaah";
-              break;
-            } ?></td>
-            <td>action</td>
-          </tr>
-        <?php endforeach; ?>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
 
 
       </tbody>

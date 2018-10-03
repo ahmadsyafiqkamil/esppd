@@ -323,7 +323,18 @@ class Client_Model extends CI_Model
   public function print_telaah()
   {
     $query = $this->db->get('telaah_staf');
-		return $query->result_array();
+    return $query->result_array();
+  }
+  public function kwitansi()
+  {
+    return $this->db->select(' kwitansi.no_kwitansi as no_kwitansi,
+    kwitansi.total_uang as total_uang,
+    sppd.no_sppd as no_sppd,
+    sppd.status as status_sppd')
+    ->join("detil_sppd", "kwitansi.id = detil_sppd.kwitansi_id")
+    ->join("sppd", "detil_sppd.sppd_id = sppd.id")
+    ->where('total_uang IS not NULL', null, false)
+    ->get('kwitansi');
   }
 }
 

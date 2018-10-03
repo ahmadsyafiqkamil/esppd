@@ -319,11 +319,18 @@ class Client extends CI_Controller
 
           public function kwitansi()
           {
-            $this->template->loadContent("client/kwitansi.php", array());
+            $kwitansi = $this->client_model->kwitansi();
+            $this->template->loadContent("client/kwitansi.php", array(
+              'kwitansi' =>$kwitansi,
+            ));
           }
           public function riil()
           {
             $this->template->loadContent("client/riil",array( ));
+          }
+          public function laporan()
+          {
+            $this->template->loadContent("client/laporan",array( ));
           }
           public function rtahun()
           {

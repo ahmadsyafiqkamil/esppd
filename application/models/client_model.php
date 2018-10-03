@@ -320,6 +320,11 @@ class Client_Model extends CI_Model
     $this->db->where('id', $id);
     $this->db->update('sppd', $data);
   }
+  public function print_telaah()
+  {
+    $query = $this->db->get('telaah_staf');
+		return $query->result_array();
+  }
 }
 
 ?>

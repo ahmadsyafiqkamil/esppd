@@ -22,7 +22,7 @@ class Client extends CI_Controller
     $this->template->set_layout("layout/client_layout.php");
 
     $this->load->model("client_model");
-
+    $this->load->library('Pdf');
   }
   public function index()
   {
@@ -550,7 +550,13 @@ class Client extends CI_Controller
                     $this->session->set_flashdata('notif', '<div class="alert alert-success" role="alert"> No SPT Sudah Terbit <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                     redirect('client/telaah_baru');
                   }
+                  public function print()
+                  {
 
+                    $data['telaah_staf'] = $this->client_model->print_telaah();
+                    $this->load->view('print',$data);
+                    // $this->template->loadContent('print');
+                  }
 
                 }
                 ?>

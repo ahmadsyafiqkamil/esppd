@@ -324,13 +324,25 @@ class Client extends CI_Controller
               'kwitansi' =>$kwitansi,
             ));
           }
-          public function riil()
-          {
-            $this->template->loadContent("client/riil",array( ));
-          }
+          // public function riil()
+          // {
+          //   $kwitansi = $this->client_model->kwitansi();
+          //   $this->template->loadContent("client/riil",array(
+          //   'kwitansi' =>$kwitansi
+          // ));
+          // }
           public function laporan()
           {
-            $this->template->loadContent("client/laporan",array( ));
+            $kwitansi = $this->client_model->kwitansi();
+            $this->template->loadContent("client/laporan",array(
+              'kwitansi' => $kwitansi
+            ));
+          }
+          public function laporan_anggaran()
+          {
+            $this->template->loadContent("client/laporan_anggaran",array(
+
+            ));
           }
           public function rtahun()
           {
@@ -563,6 +575,10 @@ class Client extends CI_Controller
                     $data['telaah_staf'] = $this->client_model->print_telaah();
                     $this->load->view('print',$data);
                     // $this->template->loadContent('print');
+                  }
+                  public function biaya()
+                  {
+                    $this->template->loadContent('client/biaya');
                   }
 
                 }

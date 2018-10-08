@@ -22,19 +22,18 @@
           <th><?php echo lang('cnt_130'); ?></th>
           <th><?php echo lang('cnt_131'); ?></th>
           <th><?php echo lang('cnt_132'); ?></th>
-          <th><?php echo lang('cnt_133'); ?></th>
           <th class="text-center"><?php echo lang('cnt_47'); ?></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-
+        <?php foreach ($kwitansi->result() as $kw ): ?>
+          <tr>
+            <td><?php echo $kw->no_kwitansi; ?></td>
+            <td><?php echo $kw->tugas_sppd; ?></td>
+            <td><?php echo 'Rp.'.number_format($kw->total_uang, 0, ".", "."); ?></td>
+            <td>action</td>
+          </tr>
+        <?php endforeach; ?>
 
       </tbody>
     </table>

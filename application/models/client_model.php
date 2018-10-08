@@ -329,6 +329,7 @@ class Client_Model extends CI_Model
   {
     return $this->db->select(' kwitansi.no_kwitansi as no_kwitansi,
     kwitansi.total_uang as total_uang,
+    sppd.tugas as tugas_sppd,
     sppd.no_sppd as no_sppd,
     sppd.status as status_sppd')
     ->join("detil_sppd", "kwitansi.id = detil_sppd.kwitansi_id")

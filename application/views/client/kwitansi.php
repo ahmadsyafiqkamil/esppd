@@ -30,7 +30,7 @@
         <?php foreach ($kwitansi->result() as $kw ): ?>
           <tr>
             <td><?php echo $kw->no_kwitansi; ?></td>
-            <td><?php echo $kw->total_uang; ?></td>
+            <td><?php echo 'Rp.'.number_format($kw->total_uang, 0, ".", "."); ?></td>
             <td><?php echo $kw->no_sppd; ?></td>
             <td><?php switch ($kw->status_sppd) {
               case 1:

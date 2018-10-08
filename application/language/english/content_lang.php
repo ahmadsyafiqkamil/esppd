@@ -194,4 +194,13 @@ $lang['cnt_131'] = 'No SPPD';
 $lang['cnt_132'] = 'Total Biaya';
 $lang['cnt_133'] = 'Status SPPD';
 
+// biaya
+$lang['cnt_134'] = 'Master Biaya';
+$lang['cnt_135'] = 'Provinsi Tujuan';
+$lang['cnt_136'] = 'Kota Tujuan';
+$lang['cnt_137'] = 'Biaya Transportasi';
+$lang['cnt_138'] = 'Biaya Lain';
+$lang['cnt_139'] = 'Biaya Lupsum';
+$lang['cnt_140'] = 'Biaya Hotel';
+
 ?>

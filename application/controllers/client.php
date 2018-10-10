@@ -578,7 +578,20 @@ class Client extends CI_Controller
                   }
                   public function biaya()
                   {
-                    $this->template->loadContent('client/biaya');
+                    $provinsi = $this->client_model->ambil_provinsi();
+                    $kota = $this->client_model->ambil_kota();
+                    $biaya_transport = $this->client_model->master_biaya_transport();
+                    $biaya_lain = $this->client_model->ambil_biaya_lain();
+                    $lupsum = $this->client_model->lupsum();
+                    $hotel = $this->client_model->biaya_hotel();
+                    $this->template->loadContent('client/biaya',array(
+                    'provinsi' => $provinsi,
+                    'kota' => $kota,
+                    'biaya_transport' =>$biaya_transport,
+                    'biaya_lain' =>$biaya_lain,
+                    'lupsum' =>$lupsum,
+                    'hotel' =>$hotel
+                  ));
                   }
 
                 }

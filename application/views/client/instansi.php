@@ -65,7 +65,7 @@
 				<div class="text-right">
 					<button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
 				</div>
-
+			</fieldset>
 				<?php echo form_close(); ?>
 			</div>
 		</div>

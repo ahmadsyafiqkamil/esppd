@@ -337,6 +337,57 @@ class Client_Model extends CI_Model
     ->where('total_uang IS not NULL', null, false)
     ->get('kwitansi');
   }
+  public function ambil_provinsi()
+  {
+    return $this->db->select('*')
+    ->get('provinsi');
+  }
+  public function ambil_kota()
+  {
+    return $this->db->select('*')
+    ->get('kota');
+  }
+  public function master_biaya_transport()
+  {
+    return $this->db->select('
+    biaya_transport.id as id_biaya_transport,
+    biaya_transport.jenis_transport_id as id_jenis_transport,
+    biaya_transport.golongan_id as id_golongan_transport,
+    biaya_transport.kota_id as id_kota,
+    biaya_transport.jumlah as jumlah_transport,
+    golongan.nama as nama_golongan,
+    jenis_transport.nama as nama_transport,
+    kota.nama as nama_kota
+    '
+    )
+    ->join("golongan", " golongan.id = biaya_transport.golongan_id")
+    ->join("jenis_transport", "biaya_transport.jenis_transport_id = jenis_transport.id")
+    ->join("kota", " kota.id = biaya_transport.kota_id")
+    ->get('biaya_transport');
+  }
+  public function ambil_biaya_lain()
+  {
+    return $this->db->select('*')
+    ->get('biaya_lain');
+  }
+  public function lupsum()
+  {
+    return $this->db->select('
+      biaya_harian.jumlah as jumlah_biaya,  kota.nama as nama_kota '
+    )
+    ->join("kota", " kota.id = biaya_harian.kota_id ")
+    ->join("provinsi", "provinsi.id = kota.provinsi_id")
+    ->get('biaya_harian');
+  }
+  public function biaya_hotel()
+  {
+  return $this->db->select('
+    golongan.nama as nama_golongan, kota.nama as nama_kota, jumlah '
+  )
+  ->join("kota", " kota.id = biaya_hotel.kota_id")
+  ->join("golongan", "golongan.id = biaya_hotel.golongan_id")
+  ->get('biaya_hotel');
+  }
 }
 
 ?>

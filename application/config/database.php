@@ -96,9 +96,9 @@ $query_builder = TRUE;
 // );
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'pgsql:host=localhost;port=5432;dbname=esppd_ekin',
+	'hostname' => 'pgsql:host=localhost;port=5432;dbname=sppd_ekin',
 	'username' => 'postgres',
-	'password' => 'root',
+	'password' => 'q',
 	'database' => '',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',

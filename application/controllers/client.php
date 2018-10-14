@@ -22,7 +22,8 @@ class Client extends CI_Controller
     $this->template->set_layout("layout/client_layout.php");
 
     $this->load->model("client_model");
-    $this->load->library('Pdf');
+    // $this->load->library('Pdf');
+    $this->load->library('m_pdf');
   }
   public function index()
   {
@@ -569,13 +570,7 @@ class Client extends CI_Controller
                     $this->session->set_flashdata('notif', '<div class="alert alert-success" role="alert"> No SPT Sudah Terbit <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                     redirect('client/telaah_baru');
                   }
-                  public function print()
-                  {
 
-                    $data['telaah_staf'] = $this->client_model->print_telaah();
-                    $this->load->view('print',$data);
-                    // $this->template->loadContent('print');
-                  }
                   public function biaya()
                   {
                     $provinsi = $this->client_model->ambil_provinsi();
@@ -585,13 +580,32 @@ class Client extends CI_Controller
                     $lupsum = $this->client_model->lupsum();
                     $hotel = $this->client_model->biaya_hotel();
                     $this->template->loadContent('client/biaya',array(
-                    'provinsi' => $provinsi,
-                    'kota' => $kota,
-                    'biaya_transport' =>$biaya_transport,
-                    'biaya_lain' =>$biaya_lain,
-                    'lupsum' =>$lupsum,
-                    'hotel' =>$hotel
-                  ));
+                      'provinsi' => $provinsi,
+                      'kota' => $kota,
+                      'biaya_transport' =>$biaya_transport,
+                      'biaya_lain' =>$biaya_lain,
+                      'lupsum' =>$lupsum,
+                      'hotel' =>$hotel
+                    ));
+                  }
+                  public function coba_print()
+                  {
+                    $data = [];
+                    //load the view and saved it into $html variable
+                    $html=$this->load->view('welcome_message', $data, true);
+
+                    //this the the PDF filename that user will get to download
+                    $pdfFilePath = "output_pdf_name.pdf";
+
+                    //load mPDF library
+
+
+                    //generate the PDF from the given html
+                    $this->m_pdf->pdf->WriteHTML($html);
+
+                    //download it.
+                    // $this->m_pdf->pdf->Output($pdfFilePath, "D");
+                    $this->m_pdf->pdf->Output();
                   }
 
                 }

@@ -32,36 +32,38 @@
 
           <!-- Main -->
           <li class="navigation-header"><span><?php echo lang('cnt_16'); ?></span> <i class="icon-menu" title="Main pages"></i></li>
-          <li class="active"><a href="index.html"><i class="icon-home4"></i> <span><?php echo lang('cnt_17'); ?></span></a></li>
+          <li class="active"><a href="<?php echo site_url("client/") ?>"><i class="icon-home4"></i> <span><?php echo lang('cnt_17'); ?></span></a></li>
           <li>
             <a href="#"><i class="icon-stack2"></i> <span><?php echo lang('cnt_18'); ?></span></a>
             <ul>
               <li><a href="<?php echo site_url("client/instansi") ?>"><?php echo lang('cnt_19'); ?></a></li>
               <li><a href="<?php echo site_url("client/pegawai") ?>"><?php echo lang('cnt_20'); ?></a></li>
-              <li><a href="#"><?php echo lang('cnt_21'); ?></a></li>
-              <li><a href="#"><?php echo lang('cnt_22'); ?></a></li>
-              <li><a href="#"><?php echo lang('cnt_23'); ?></a></li>
-              <li><a href="#"><?php echo lang('cnt_24'); ?></a></li>
+              <li><a href="<?php echo site_url("client/biaya") ?>"><?php echo lang('cnt_21'); ?></a></li>
+              <li><a href="<?php echo site_url("client/golongan") ?>"><?php echo lang('cnt_22'); ?></a></li>
+              <li><a href="<?php echo site_url("client/transport") ?>"><?php echo lang('cnt_23'); ?></a></li>
+              <li><a href="<?php echo site_url("client/ttd") ?>"><?php echo lang('cnt_24'); ?></a></li>
             </ul>
           </li>
           <li>
             <a href="#"><i class="icon-stack3"></i> <span><?php echo lang('cnt_25'); ?></span></a>
             <ul>
-              <li><a href="#"><?php echo lang('cnt_26'); ?></a></li>
-              <li><a href="#"><?php echo lang('cnt_27'); ?></a></li>
-              <li><a href="#"><?php echo lang('cnt_28'); ?></a></li>
-              <li><a href="#"><?php echo lang('cnt_29'); ?></a></li>
+              <li><a href="<?php echo site_url("client/usulan_baru") ?>"><?php echo lang('cnt_26'); ?></a></li>
+              <li><a href="<?php echo site_url("client/telaah_baru") ?>"><?php echo lang('cnt_27'); ?></a></li>
+              <li><a href="<?php echo site_url("client/tugas") ?>"><?php echo lang('cnt_28'); ?></a></li>
+              <li><a href="<?php echo site_url("client/perjalanan") ?>"><?php echo lang('cnt_29'); ?></a></li>
             </ul>
           </li>
-          <li><a href="#"><i class="icon-stack4"></i><?php echo lang('cnt_30'); ?></a></li>
-          <li><a href="#"><i class="icon-grid"></i><?php echo lang('cnt_31'); ?></a></li>
-
+          <li><a href="<?php echo site_url("client/kwitansi") ?>"><i class="icon-stack4"></i><?php echo lang('cnt_30'); ?></a></li>
+          <!-- <li><a href="<?php echo site_url("client/riil") ?>"><i class="icon-grid"></i><?php echo lang('cnt_31'); ?></a></li> -->
+          <li><a href="<?php echo site_url("client/laporan") ?>"><i class="glyphicon glyphicon-book"></i><?php echo lang('cnt_128'); ?></a></li>
+          <li><a href="<?php echo site_url("client/laporan_anggaran") ?>"><i class="glyphicon glyphicon-credit-card"></i><?php echo lang('cnt_129'); ?></a></li>
           <li>
             <a href="#"><i class="icon-stack3"></i> <span><?php echo lang('cnt_32'); ?></span></a>
             <ul>
-              <li><a href="#"><?php echo lang('cnt_33'); ?></a></li>
-              <li><a href="#"><?php echo lang('cnt_34'); ?></a></li>
-              <li><a href="#"><?php echo lang('cnt_35'); ?></a></li>
+
+              <li><a href="<?php echo site_url("client/rtahun") ?>"><?php echo lang('cnt_33'); ?></a></li>
+              <li><a href="<?php echo site_url("client/rbulan") ?>"><?php echo lang('cnt_34'); ?></a></li>
+              <li><a href="<?php echo site_url("client/log") ?>"><?php echo lang('cnt_35'); ?></a></li>
             </ul>
           </li>
           <!-- /page kits -->

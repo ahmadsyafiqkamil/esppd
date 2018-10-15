@@ -45,10 +45,10 @@ $(function() {
     // Prompt dialog
     $('#prompt').on('click', function() {
         bootbox.prompt("Please enter your name", function(result) {
-            if (result === null) {                                             
-                bootbox.alert("Prompt dismissed");                              
+            if (result === null) {
+                bootbox.alert("Prompt dismissed");
             } else {
-                bootbox.alert("Hi <b>"+result+"</b>");                          
+                bootbox.alert("Hi <b>"+result+"</b>");
             }
         });
     });
@@ -180,7 +180,7 @@ $(function() {
             alert('onHidden callback fired.')
         });
     });
-    
+
 
     // Sweet Alert extension
     // ------------------------------
@@ -274,12 +274,12 @@ $(function() {
     //
     // Contextual alerts
     //
-    
+
     // Success alert
     $('#sweet_success').on('click', function() {
         swal({
-            title: "Good job!",
-            text: "You clicked the button!",
+            title: "",
+            text: "Anda Menyetujui Usulan Perjalanan Dinas",
             confirmButtonColor: "#66BB6A",
             type: "success"
         });

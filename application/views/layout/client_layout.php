@@ -17,7 +17,9 @@
 
 	<!-- Core JS files -->
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/loaders/pace.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/core/libraries/jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/core/libraries/jquery.min.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/core/libraries/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/loaders/blockui.min.js"></script>
 	<!-- /core JS files -->
@@ -27,10 +29,53 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/ui/fullcalendar/fullcalendar.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/extra_fullcalendar.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/form_inputs.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/styling/uniform.min.js"></script>
+	<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/styling/uniform.min.js"></script> -->
+
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/tables/datatables/datatables.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/select2.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/datatables_basic.js"></script>
+	<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/select2.min.js"></script> -->
+	<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/datatables_data_sources.js"></script> -->
+	<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/datatables_basic.js"></script> -->
+
+
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/tags/tagsinput.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/tags/tokenfield.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/ui/prism.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/inputs/typeahead/typeahead.bundle.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/form_tags_input.js"></script>
+
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/notifications/bootbox.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/notifications/sweet_alert.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/select2.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/components_modals.js"></script>
+
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/styling/uniform.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/styling/switchery.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/styling/switch.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/form_checkboxes_radios.js"></script>
+
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/form_layouts.js"></script>
+
+
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/core/libraries/jquery_ui/core.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/selectboxit.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/forms/selects/bootstrap_select.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/notifications/noty.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/notifications/jgrowl.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/colors_warning.js"></script>
+
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/components_notifications_pnotify.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/notifications/pnotify.min.js"></script>
+
+
+
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/pickers/daterangepicker.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/pickers/anytime.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/pickers/pickadate/picker.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/pickers/pickadate/picker.date.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/pickers/pickadate/picker.time.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/pickers/pickadate/legacy.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/picker_date.js"></script>
 
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/core/app.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/ui/ripple.min.js"></script>
@@ -39,7 +84,9 @@
 	<!-- /theme JS files -->
 
 </head>
+<?php
 
+?>
 <body class="navbar-bottom">
 
 	<!-- Main navbar -->
@@ -66,8 +113,8 @@
 
 				<li class="dropdown dropdown-user">
 					<a class="dropdown-toggle" data-toggle="dropdown">
-						<img src="assets/images/placeholder.jpg" alt="">
-						<span>Victoria</span>
+						<img src="<?php echo base_url(); ?>assets/images/placeholder.jpg" alt="">
+						<span><?php  echo $this->session->userdata('nama');?></span>
 						<i class="caret"></i>
 					</a>
 
@@ -75,7 +122,7 @@
 						<li><a href="#"><i class="icon-user-plus"></i> <?php echo lang('cnt_13'); ?></a></li>
 						<li class="divider"></li>
 						<li><a href="#"><i class="icon-cog5"></i><?php echo lang('cnt_14'); ?></a></li>
-						<li><a href="#"><i class="icon-switch2"></i> <?php echo lang('cnt_15'); ?></a></li>
+						<li><a href="<?php echo site_url('login/logout') ?>"><i class="icon-switch2"></i> <?php echo lang('cnt_15'); ?></a></li>
 					</ul>
 				</li>
 			</ul>
@@ -94,38 +141,38 @@
 			</ul>
 
 			<!-- <ul class="breadcrumb-elements">
-				<li><a href="#"><i class="icon-comment-discussion position-left"></i> Support</a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-gear position-left"></i>
-						Settings
-						<span class="caret"></span>
-					</a>
+			<li><a href="#"><i class="icon-comment-discussion position-left"></i> Support</a></li>
+			<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			<i class="icon-gear position-left"></i>
+			Settings
+			<span class="caret"></span>
+		</a>
 
-					<ul class="dropdown-menu dropdown-menu-right">
-					<li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>
-					<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>
-					<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>
-					<li class="divider"></li>
-					<li><a href="#"><i class="icon-gear"></i> All settings</a></li>
-				</ul>
-			</li>
-		</ul> -->
+		<ul class="dropdown-menu dropdown-menu-right">
+		<li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>
+		<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>
+		<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>
+		<li class="divider"></li>
+		<li><a href="#"><i class="icon-gear"></i> All settings</a></li>
+	</ul>
+</li>
+</ul> -->
+</div>
+
+<div class="page-header-content">
+	<div class="page-title">
+		<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold"><?php echo lang('cnt_17'); ?></span> </h4>
 	</div>
 
-	<div class="page-header-content">
-		<div class="page-title">
-			<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold"><?php echo lang('cnt_17'); ?></span> </h4>
-		</div>
-
-		<!-- <div class="heading-elements">
-			<div class="heading-btn-group">
-				<a href="#" class="btn btn-link btn-float text-size-small has-text"><i class="icon-bars-alt text-indigo-400"></i><span>Statistics</span></a>
-				<a href="#" class="btn btn-link btn-float text-size-small has-text"><i class="icon-calculator text-indigo-400"></i><span>Invoices</span></a>
-				<a href="#" class="btn btn-link btn-float text-size-small has-text"><i class="icon-calendar5 text-indigo-400"></i><span>Schedule</span></a>
-			</div>
-		</div> -->
-	</div>
+	<!-- <div class="heading-elements">
+	<div class="heading-btn-group">
+	<a href="#" class="btn btn-link btn-float text-size-small has-text"><i class="icon-bars-alt text-indigo-400"></i><span>Statistics</span></a>
+	<a href="#" class="btn btn-link btn-float text-size-small has-text"><i class="icon-calculator text-indigo-400"></i><span>Invoices</span></a>
+	<a href="#" class="btn btn-link btn-float text-size-small has-text"><i class="icon-calendar5 text-indigo-400"></i><span>Schedule</span></a>
+</div>
+</div> -->
+</div>
 </div>
 <!-- /page header -->
 

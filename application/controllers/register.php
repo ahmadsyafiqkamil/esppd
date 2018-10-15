@@ -17,7 +17,7 @@ class Register extends CI_Controller
   }
   public function pro()
   {
-    
+    $this->template->loadContent("login/index.php", array());
   }
 }
 ?>

@@ -588,6 +588,17 @@ class Client extends CI_Controller
                       'hotel' =>$hotel
                     ));
                   }
+                  public function hapus_spt($id)
+                  {
+
+                  }
+                  public function cetak_spt($id)
+                  {
+                    $data = [];
+                    $print = $this->load->view('print/spt', $data, true);
+                    $this->m_pdf->pdf->WriteHTML($print);
+                    $this->m_pdf->pdf->Output();
+                  }
                   public function coba_print()
                   {
                     $data = [];

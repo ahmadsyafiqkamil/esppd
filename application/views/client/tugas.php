@@ -37,8 +37,8 @@
             } ?></td>
             <td><?php echo $sppd->nama_kota; ?></td>
             <td><?php echo $sppd->tugas; ?></td>
-            <td><a href="<?php echo base_url(); ?>client/cetak" type="button" class="btn bg-blue">cetak<i class="glyphicon glyphicon-print position-right"></i></a>
-              <a type="button" class="btn bg-warning"> Hapus <i class="glyphicon glyphicon-remove position-right"></i> </a>
+            <td><a href="<?php echo base_url(); ?>client/cetak_spt/<?php echo $sppd->id_sppd;?>" type="button" class="btn bg-blue">cetak<i class="glyphicon glyphicon-print position-right"></i></a>
+              <a href="<?php echo base_url(); ?>client/hapus_spt/<?php echo $sppd->id_sppd;?>" type="button" class="btn bg-warning"> Hapus <i class="glyphicon glyphicon-remove position-right"></i> </a>
             </td>
           </tr>
         <?php endforeach; ?>

@@ -142,6 +142,7 @@ class Client_Model extends CI_Model
   public function spt()
   {
     return $this->db->select('
+    sppd.id as id_sppd,
     sppd.no_spt as no_spd,
     array_to_json(array_agg(master_user.user_name )) as nama_pegawai,
     kota.nama as nama_kota ,
@@ -152,7 +153,7 @@ class Client_Model extends CI_Model
     ->join("kwitansi", "kwitansi.id = detil_sppd.kwitansi_id")
     ->join("master_user","master_user.user_id = detil_sppd.nip")
     ->order_by("no_spd")
-    ->group_by(' sppd.no_spt,kota.nama,sppd.tugas')
+    ->group_by(' sppd.id,sppd.no_spt,kota.nama,sppd.tugas')
     ->where('sppd.no_spt IS not NULL', null, false)
     ->get("sppd");
   }
@@ -259,7 +260,7 @@ class Client_Model extends CI_Model
   public function tolak_telaah($data,$id)
   {
     $this->db->where('id', $id);
-    $this->db->update('sppd', $data);
+    $this->db->update('telaah_staf', $data);
   }
   public function data_pegawai_usul_sppd($id)
   {

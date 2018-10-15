@@ -599,6 +599,19 @@ class Client extends CI_Controller
                     $this->m_pdf->pdf->WriteHTML($print);
                     $this->m_pdf->pdf->Output();
                   }
+                  public function cetak_sppd($id)
+                  {
+                    // code...
+                  }
+                  public function hapus_sppd($value='')
+                  {
+                    // code...
+                  }
+public function detail_kwitansi($id)
+{
+  // code...
+}
+
                   public function coba_print()
                   {
                     $data = [];

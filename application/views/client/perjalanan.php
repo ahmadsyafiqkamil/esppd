@@ -33,8 +33,8 @@
             <td><?php echo $s->tugas; ?></td>
             <td><?php echo $s->nama_kota; ?></td>
             <td><?php echo $s->mata_anggaran; ?></td>
-            <td><a type="button" class="btn bg-blue">Detail<i class="glyphicon glyphicon-tasasition-right"></i></a>
-              <a type="button" class="btn bg-warning"> Hapus <i class="glyphicon glyphicon-remove position-right"></i> </a>
+            <td><a  href="<?php echo base_url(); ?>client/cetak_sppd/<?php echo $s->id_sppd;?>" type="button" class="btn bg-blue">Detail<i class="glyphicon glyphicon-tasasition-right"></i></a>
+              <a href="<?php echo base_url(); ?>client/hapus_sppd/<?php echo $s->id_sppd;?>" type="button" class="btn bg-warning"> Hapus <i class="glyphicon glyphicon-remove position-right"></i> </a>
             </td>
           </tr>
         <?php endforeach; ?>

@@ -15,55 +15,43 @@
         <!-- <a href="<?php echo base_url(); ?>client/tambah_nota" type="button" class="btn btn-primary" onclick=""><?php echo lang('cnt_83'); ?> </a> -->
       </div>
     </div>
-
-    <table class="table datatable-basic">
-      <thead>
-        <tr>
-          <th><?php echo lang('cnt_130'); ?></th>
-          <th><?php echo lang('cnt_131'); ?></th>
-          <th><?php echo lang('cnt_132'); ?></th>
-          <th class="text-center"><?php echo lang('cnt_47'); ?></th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($kwitansi->result() as $kw ): ?>
-          <tr>
-            <td><?php echo $kw->no_kwitansi; ?></td>
-            <td><?php echo $kw->tugas_sppd; ?></td>
-            <td><?php echo 'Rp.'.number_format($kw->total_uang, 0, ".", "."); ?></td>
-            <td><a  href="<?php echo base_url(); ?>client/detail_kwitansi/<?php echo $kw->id_kwitansi;?>" type="button" class="btn bg-blue">Detail<i class="glyphicon glyphicon-tasasition-right"></i></a></td>
-          </tr>
-        <?php endforeach; ?>
-
-      </tbody>
-    </table>
+    <canvas id="myChart" ></canvas>
   </div>
 </div>
 
 
 <script type="text/javascript">
-$.extend( $.fn.dataTable.defaults, {
-  autoWidth: false,
-  columnDefs: [{
-    orderable: false,
-    width: '100px'
-  }],
-  dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
-  language: {
-    search: '<span>Filter:</span> _INPUT_',
-    searchPlaceholder: 'Type to filter...',
-    lengthMenu: '<span>Show:</span> _MENU_',
-    paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' }
-  },
-  drawCallback: function () {
-    $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').addClass('dropup');
-  },
-  preDrawCallback: function() {
-    $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
-  }
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni","Juli", "Agustus", "September", "Oktober", "November", "Desember"],
+        datasets: [{
+            label: '# of Votes',
+            data: [22, 19, 3, 5, 2, 3,12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+
+            ],
+            borderColor: [
+                // 'rgba(255,99,132,1)',
+                // 'rgba(54, 162, 235, 1)',
+                // 'rgba(255, 206, 86, 1)',
+                // 'rgba(75, 192, 192, 1)',
+                // 'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
 });
-
-
-// Basic datatable
-$('.datatable-basic').DataTable();
 </script>

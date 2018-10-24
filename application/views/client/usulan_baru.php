@@ -162,7 +162,7 @@
 
 <script type="text/javascript">
 function id_spt(id) {
-$('#id').val(id);
+  $('#id').val(id);
 }
 
 $.extend( $.fn.dataTable.defaults, {

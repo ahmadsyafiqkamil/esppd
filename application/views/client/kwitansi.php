@@ -1,7 +1,8 @@
 <div class="content-wrapper">
   <div class="panel panel-flat">
+    <?=$this->session->flashdata('notif')?>
     <div class="panel-heading">
-      <h5 class="panel-title"><?php echo lang('cnt_95'); ?></h5>
+      <h5 class="panel-title">Kwitansi</h5>
       <div class="heading-elements">
         <ul class="icons-list">
           <!-- <li><a data-action="collapse"></a></li> -->
@@ -30,35 +31,17 @@
         <?php foreach ($kwitansi->result() as $kw ): ?>
           <tr>
             <td><?php echo $kw->no_kwitansi; ?></td>
-            <td><?php echo 'Rp.'.number_format($kw->total_uang, 0, ".", "."); ?></td>
             <td><?php echo $kw->no_sppd; ?></td>
-            <td><?php switch ($kw->status_sppd) {
+            <td><?php echo 'Rp.'.number_format($kw->total_biaya, 0, ".", "."); ?></td>
+            <td><?php switch ($kw->status_kwitansi) {
               case 1:
-              echo "sudah ditelaah";
+              echo "Kwitansi diterima";
               break;
-              case 2:
-              echo "Disetujui Kepala Dinas";
-              break;
-              case 3:
-              echo "Ditolak Kepala Dinas";
-              break;
-              case 4:
-              echo "Lanjut SPT";
-              break;
-              case 5:
-                echo "SPPD Ditolak";
-                break;
-                case 6:
-                  echo "SPPD Rampun";
-                  break;
-                  case 7:
-                    echo "Sudah Pulang dari Perjalanan Dinas";
-                    break;
               default:
-              echo "Belum Ditelaah";
+              echo "Kwitansi ditolak";
               break;
             } ?></td>
-            <td>action</td>
+            <td><a href="<?php echo base_url('client/detil_kwitansi/').$kw->id_kwitansi; ?>"> detail </a></td>
           </tr>
         <?php endforeach; ?>
 

@@ -1,5 +1,6 @@
 <div class="content-wrapper">
   <div class="panel panel-flat">
+    <?=$this->session->flashdata('notif')?>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h6 class="panel-title"><?php echo lang('cnt_134'); ?></h6>
@@ -33,7 +34,7 @@
 
             <div class="panel-body">
               <div class="text-left">
-
+                <?php echo form_open_multipart('client/tambah_provinsi', 'class="form-horizontal"'); ?>
                 <fieldset class="content-group">
                   <div class="form-group">
                     <label class="control-label col-lg-2"><?php echo lang('cnt_135'); ?></label>
@@ -46,6 +47,7 @@
                     <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
                   </div>
                 </fieldset>
+                <?php echo form_close(); ?>
                 <!-- <a href="<?php echo base_url(); ?>client/tambah_nota" type="button" class="btn btn-primary" onclick=""><?php echo lang('cnt_83'); ?> </a> -->
               </div>
             </div>
@@ -60,7 +62,7 @@
               </thead>
               <tbody>
                 <?php
-                $i = 1;
+                $i = 0;
                 foreach ($provinsi->result() as $pro ):
                   $i++;
                   ?>
@@ -93,6 +95,7 @@
             </div>
             <div class="panel-body">
               <div class="text-left">
+                <?php echo form_open_multipart('client/tambah_kota_tujuan', 'class="form-horizontal"'); ?>
                 <fieldset class="content-group">
                   <div class="form-group">
                     <label class="control-label col-lg-2"><?php echo lang('cnt_135'); ?></label>
@@ -104,7 +107,7 @@
                   <div class="text-right">
                     <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
                   </div>
-                </fieldset>
+                </fieldset><?php echo form_close(); ?>
               </div>
             </div>
 
@@ -118,7 +121,7 @@
               </thead>
               <tbody>
                 <?php
-                $i = 1;
+                $i = 0;
                 foreach ($kota->result() as $pro ):
                   $i++;
                   ?>
@@ -149,18 +152,56 @@
             </div>
             <div class="panel-body">
               <div class="text-left">
+                <?php echo form_open_multipart('client/tambah_transportasi', 'class="form-horizontal"'); ?>
                 <fieldset class="content-group">
+                  <!-- <legend class="text-bold">Basic selects</legend> -->
+
                   <div class="form-group">
-                    <label class="control-label col-lg-2"><?php echo lang('cnt_135'); ?></label>
-                    <div class="col-lg-8">
-                      <input type="text" class="form-control" name="nama" required>
+                    <label class="control-label col-lg-2">Moda Transportasi</label>
+                    <div class="col-lg-10">
+                      <select name="transport" class="form-control">
+                        <?php foreach ($transport->result() as $t): ?>
+                          <option value="<?php  echo $t->id;?>"><?php echo $t->nama; ?></option>
+                        <?php endforeach; ?>
+
+                      </select>
                     </div>
                   </div>
+                  <div class="form-group">
+                    <label class="control-label col-lg-2">Eselon</label>
+                    <div class="col-lg-10">
+                      <select name="eselon" class="form-control">
 
+                        <?php foreach ($eselon->result() as $k): ?>
+                          <option value="<?php echo $k->id; ?>"><?php echo $k->nama; ?></option>
+                        <?php endforeach; ?>
+
+                      </select>
+                    </div>
+                  </div>
+                  <!-- <div class="form-group">
+                    <label class="control-label col-lg-2">Kota</label>
+                    <div class="col-lg-10">
+                      <select name="kota" class="form-control">
+                        <?php foreach ($kota->result() as $t): ?>
+                          <option value="<?php  echo $t->id;?>"><?php echo $t->nama; ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                  </div> -->
+                  <div class="form-group">
+                    <label class="control-label col-lg-2">Jumlah</label>
+                    <div class="col-lg-10">
+                      <input type="text" name="jumlah" class="form-control">
+                    </div>
+                  </div>
                   <div class="text-right">
                     <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
                   </div>
+
+
                 </fieldset>
+                <?php echo form_close(); ?>
               </div>
             </div>
 
@@ -169,25 +210,25 @@
                 <tr>
                   <th>No</th>
                   <th>Jenis Transportasi</th>
-                  <th>Golongan</th>
-                  <th>Destinasi</th>
+                  <th>Eselon</th>
+                  <!-- <th>Destinasi</th> -->
                   <th>Biaya Transportasi</th>
                   <th class="text-center"><?php echo lang('cnt_47'); ?></th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                $i = 1;
+                $i = 0;
                 foreach ($biaya_transport->result() as $pro ):
                   $i++;
                   ?>
                   <tr>
                     <td><?php echo $i ?></td>
                     <td><?php echo $pro->nama_transport ?></td>
-                    <td><?php echo $pro->nama_golongan ?></td>
-                    <td><?php echo $pro->nama_kota ?></td>
-                    <td><?php echo $pro->jumlah_transport ?></td>
-                    <td>4</td>
+                    <td><?php echo $pro->eselon ?></td>
+                    <!-- <td><?php echo $pro->nama_kota ?></td> -->
+                    <td><?php echo 'Rp.'.number_format($pro->jumlah_transport, 0, ".", "."); ?></td>
+                    <td>action</td>
                   </tr>
                 <?php endforeach; ?>
               </tbody>
@@ -209,19 +250,33 @@
               </div>
             </div>
             <div class="panel-body">
-              <div class="text-left">
+              <div class="text-left"><?php echo form_open_multipart('client/tambah_biaya_lain_lain', 'class="form-horizontal"'); ?>
                 <fieldset class="content-group">
+
                   <div class="form-group">
-                    <label class="control-label col-lg-2"><?php echo lang('cnt_135'); ?></label>
+                    <label class="control-label col-lg-2">Nama</label>
                     <div class="col-lg-8">
                       <input type="text" class="form-control" name="nama" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-lg-2">Nominal</label>
+                    <div class="col-lg-8">
+                      <input type="text" class="form-control" name="nominal" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-lg-2">Keterangan</label>
+                    <div class="col-lg-8">
+                      <input type="text" class="form-control" name="keterangan" required>
                     </div>
                   </div>
 
                   <div class="text-right">
                     <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
                   </div>
-                </fieldset>
+                </fieldset><?php echo form_close(); ?>
               </div>
             </div>
 
@@ -237,14 +292,14 @@
               </thead>
               <tbody>
                 <?php
-                $i = 1;
+                $i = 0;
                 foreach ($biaya_lain->result() as $pro ):
                   $i++;
                   ?>
                   <tr>
                     <td><?php echo $i ?></td>
                     <td><?php echo $pro->nama ?></td>
-                    <td><?php echo $pro->jumlah ?></td>
+                    <td><?php echo 'Rp.'.number_format($pro->jumlah, 0, ".", "."); ?></td>
                     <td><?php echo $pro->ket ?></td>
                     <td>4</td>
                   </tr>
@@ -268,19 +323,29 @@
               </div>
             </div>
             <div class="panel-body">
-              <div class="text-left">
+              <div class="text-left"><?php echo form_open_multipart('client/tambah_lupsum', 'class="form-horizontal"'); ?>
                 <fieldset class="content-group">
                   <div class="form-group">
-                    <label class="control-label col-lg-2"><?php echo lang('cnt_135'); ?></label>
+                    <label class="control-label col-lg-2">Kota</label>
+                    <div class="col-lg-10">
+                      <select name="kota" class="form-control">
+                        <?php foreach ($kota->result() as $t): ?>
+                          <option value="<?php  echo $t->id;?>"><?php echo $t->nama; ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-lg-2">Nominal</label>
                     <div class="col-lg-8">
-                      <input type="text" class="form-control" name="nama" required>
+                      <input type="text" class="form-control" name="nominal" required>
                     </div>
                   </div>
 
                   <div class="text-right">
                     <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
                   </div>
-                </fieldset>
+                </fieldset><?php echo form_close(); ?>
               </div>
             </div>
 
@@ -295,15 +360,15 @@
               </thead>
               <tbody>
                 <?php
-                $i = 1;
+                $i = 0;
                 foreach ($lupsum->result() as $pro ):
                   $i++;
                   ?>
 
                   <tr>
                     <td><?php echo $i ?></td>
-                    <td><?php echo $pro->jumlah_biaya ?></td>
                     <td><?php echo $pro->nama_kota ?></td>
+                    <td><?php echo 'Rp.'.number_format($pro->jumlah_biaya, 0, ".", "."); ?></td>
                     <td>4</td>
                   </tr>
                 <?php endforeach; ?>
@@ -312,7 +377,7 @@
           </div>
         </div>
         <div class="tab-pane has-padding" id="panel-tab6">
-          6
+
           <div class="panel panel-flat">
             <div class="panel-heading">
               <h5 class="panel-title"><?php echo lang('cnt_140'); ?></h5>
@@ -326,18 +391,43 @@
             </div>
             <div class="panel-body">
               <div class="text-left">
+                <?php echo form_open_multipart('client/tambah_biaya_hotel', 'class="form-horizontal"'); ?>
                 <fieldset class="content-group">
+
                   <div class="form-group">
-                    <label class="control-label col-lg-2"><?php echo lang('cnt_135'); ?></label>
+                    <label class="control-label col-lg-2">Eselon</label>
+                    <div class="col-lg-10">
+                      <select name="eselon" class="form-control">
+
+                        <?php foreach ($eselon->result() as $k): ?>
+                          <option value="<?php echo $k->id; ?>"><?php echo $k->nama; ?></option>
+                        <?php endforeach; ?>
+
+                      </select>
+                    </div>
+                  </div>
+                  <!-- <div class="form-group">
+                    <label class="control-label col-lg-2">Kota</label>
+                    <div class="col-lg-10">
+                      <select name="kota" class="form-control">
+                        <?php foreach ($kota->result() as $t): ?>
+                          <option value="<?php  echo $t->id;?>"><?php echo $t->nama; ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                  </div> -->
+
+                  <div class="form-group">
+                    <label class="control-label col-lg-2">Nominal</label>
                     <div class="col-lg-8">
-                      <input type="text" class="form-control" name="nama" required>
+                      <input type="text" class="form-control" name="nominal" required>
                     </div>
                   </div>
 
                   <div class="text-right">
                     <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
                   </div>
-                </fieldset>
+                </fieldset><?php echo form_close(); ?>
               </div>
             </div>
 
@@ -345,24 +435,24 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Golongan</th>
-                  <th>Destinasi</th>
+                  <th>Eselon</th>
+                  <!-- <th>Destinasi</th> -->
                   <th>Biaya Hotel</th>
                   <th class="text-center"><?php echo lang('cnt_47'); ?></th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                $i = 1;
+                $i = 0;
                 foreach ($hotel->result() as $pro ):
                   $i++;
                   ?>
 
                   <tr>
                     <td><?php echo $i ?></td>
-                    <td><?php echo $pro->nama_golongan ?></td>
-                    <td><?php echo $pro->nama_kota ?></td>
-                    <td><?php echo $pro->jumlah ?></td>
+                    <td><?php echo $pro->eselon ?></td>
+                    <!-- <td><?php echo $pro->nama_kota ?></td> -->
+                    <td><?php echo 'Rp.'.number_format($pro->jumlah, 0, ".", "."); ?></td>
                     <td>4</td>
                   </tr>
                 <?php endforeach; ?>

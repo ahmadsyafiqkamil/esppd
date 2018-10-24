@@ -386,6 +386,8 @@ class Client extends CI_Controller
 
           public function tambah_usulan()
           {
+            $jumlah_pegawai = 0;
+            $jumlah_pegawai_pengikut = 0;
             $tipe_perjalanan_dinas = $this->input->post("tipe_perjalanan_dinas");
             $id_instansi = $this->session->userdata('id_instansi');
             $pegawai = $this->input->post("jenis_input");
@@ -424,62 +426,135 @@ class Client extends CI_Controller
               "is_kegiatan"        => $tipe_perjalanan_dinas,
               "master_ttd_id"      => $master_ttd
             );
+
             $q = $this->client_model->tambah_sppd($dataSPPD);
 
             $noKwi = $this->client_model->idKwitansi()->row();
             $noKwFix  = $noKwi->id + 1;
-            $no_kwit  = $noKwFix . "/kwitansi/SPPD/" .date_format($tgl_brgt,'m') . "/" . date_format($tgl_brgt,'Y');
-            $datakwi = array(
-              "no_kwitansi" => $no_kwit,
-              "tanggal"     => date('Y-m-d'),
-              "status"      => 0,
-            );
-            $this->client_model->tambah_kwitansi($datakwi);
-            $id_sppd =$this->client_model->ambilSPPDid()->row();
-            // echo $id_sppd->id;
-            // echo $this->client_model->idKwitansi()->row()->id;
 
+            $id_sppd =$this->client_model->ambilSPPDid()->row();
+
+            if ($selisih_hari == 0 ) {
+              $selisih_hari = 1;
+            }else {
+              $selisih_hari;
+            }
+
+            $total_biaya_transport =0;
+            $total_biaya_hotel =0;
+            $total_biaya_pegawai_usulan = 0;
+            // $idKwi = $this->client_model->idKwitansi()->row();
             foreach ($pegawai as $key => $j) {
+              $biaya_transport = 0;
+              $biaya_hotel = 0;
               $dataDetilSPPD = array(
                 "nip"     => $j,
                 "sppd_id"     => $id_sppd->id,
-                "kwitansi_id" => $this->client_model->idKwitansi()->row()->id,
+                "kwitansi_id" => $noKwFix,
                 "is_setujui"  => 0, );
                 $this->client_model->tambah_detil_sppd($dataDetilSPPD);
 
-              }
+                $eselon = $this->client_model->eselon_pegawai($j);
+                $eselon = $this->client_model->eselon_pegawai($j)->row();
+                $biaya_transport_eselon = $this->client_model->biaya_transport_eselon($eselon->eselon,$jns_transport)->row()->jumlah;
 
+
+                $biaya_hotel_eselon = $this->client_model->biaya_hotel_eselon($eselon->eselon)->row()->jumlah;
+                $biaya_hotel_pereselon= $biaya_hotel_eselon*$selisih_hari;
+
+
+                $total_biaya_hotel = $total_biaya_hotel+$biaya_hotel_pereselon;
+                $total_biaya_transport = $total_biaya_transport+$biaya_transport_eselon;
+                $biaya_lupsum_dinas = $this->client_model->lupsum_dinas($kota_tujuan)->row()->jumlah * $selisih_hari;
+
+                $data_detil_kwitansi = array(
+                  'kwitansi_id' => $noKwFix,
+                  'biaya_harian_id' =>$kota_tujuan,
+                  'biaya_transport_id' =>$jns_transport,
+                  'jumlah_harian' =>$selisih_hari,
+                  'jumlah_transport' =>$selisih_hari,
+                  'jumlah_hotel' =>$selisih_hari,
+                  'subtotal_harian'=>$biaya_lupsum_dinas,
+                  'subtotal_transport' =>$total_biaya_transport,
+                  'subtotal_hotel' =>$total_biaya_hotel,
+                  'nip'=>$j
+                );
+                $this->client_model->tambah_detil_kwintasi($data_detil_kwitansi);
+              }
+              $total_biaya_pegawai_usulan = $total_biaya_transport+$total_biaya_hotel+$biaya_lupsum_dinas;
+
+              // echo "total transport ".$idKwi->id."<br>";
+              // echo "total transport ".$total_biaya_transport."<br>";
+              // echo "total hotel ".$total_biaya_hotel."<br>";
+              // echo "total lupsum ".$biaya_lupsum_dinas."<br>";
+
+              $total_biaya_pegawai_pengikut = 0;
               foreach ($pegawai_pengikut as $key => $j) {
                 $data_pegawai_pengikut = array(
                   "nip"     => $j,
                   "sppd_id"     => $id_sppd->id,
-                  "kwitansi_id" => $this->client_model->idKwitansi()->row()->id,
+                  "kwitansi_id" => $noKwFix,
                   "is_setujui"  => 0, );
                   $this->client_model->tambah_pegawai_pengikut($data_pegawai_pengikut);
 
-                }
+                  $eselon = $this->client_model->eselon_pegawai($j);
+                  $eselon = $this->client_model->eselon_pegawai($j)->row();
+                  $biaya_transport_eselon = $this->client_model->biaya_transport_eselon($eselon->eselon,$jns_transport)->row()->jumlah;
 
-                if ($selisih_hari == 0 ) {
-                  $selisih_hari = 1;
-                }else {
-                  $selisih_hari;
-                }
 
+                  $biaya_hotel_eselon = $this->client_model->biaya_hotel_eselon($eselon->eselon)->row()->jumlah;
+                  $biaya_hotel_pereselon= $biaya_hotel_eselon*$selisih_hari;
+
+
+                  $total_biaya_hotel = $total_biaya_hotel+$biaya_hotel_pereselon;
+                  $total_biaya_transport = $total_biaya_transport+$biaya_transport_eselon;
+                  $biaya_lupsum_dinas = $this->client_model->lupsum_dinas($kota_tujuan)->row()->jumlah * $selisih_hari;
+
+                  $data_detil_kwitansi = array(
+                    'kwitansi_id' => $noKwFix,
+                    'biaya_harian_id' =>$kota_tujuan,
+                    'biaya_transport_id' =>$jns_transport,
+                    'jumlah_harian' =>$selisih_hari,
+                    'jumlah_transport' =>$selisih_hari,
+                    'jumlah_hotel' =>$selisih_hari,
+                    'subtotal_harian'=>$biaya_lupsum_dinas,
+                    'subtotal_transport' =>$total_biaya_transport,
+                    'subtotal_hotel' =>$total_biaya_hotel,
+                    'nip'=>$j
+                  );
+                  $this->client_model->tambah_detil_kwintasi($data_detil_kwitansi);
+
+                }
+                $total_biaya_pegawai_pengikut = $total_biaya_hotel+$total_biaya_transport+$biaya_lupsum_dinas;
+
+                $total_biaya_lain = 0;
                 if ($rbbiayalain = 1) {
                   foreach ($biayalain as $key => $j) {
 
                     $data_biaya_lain = $this->client_model->jumlah_biaya_lain($j)->row()->jumlah;
+                    $biaya_lain_satuan = $selisih_hari * $data_biaya_lain;
                     $data_detil_kwitansi_biaya_lain = array(
-                      "kwitansi_id"   => $this->client_model->idKwitansi()->row()->id,
+                      "kwitansi_id"   => $noKwFix,
                       "biaya_lain_id" => $j,
                       "jumlah"        => $selisih_hari,
-                      "subtotal"      => $selisih_hari * $data_biaya_lain,
+                      "subtotal"      => $biaya_lain_satuan,
                     );
+                    $total_biaya_lain = $total_biaya_lain+$biaya_lain_satuan;
                     $this->client_model->tambah_biaya_lain($data_detil_kwitansi_biaya_lain);
 
                   }
 
                 }
+                $total_biaya = $total_biaya_pegawai_usulan+$total_biaya_pegawai_pengikut+$total_biaya_lain;
+                $no_kwit  = $noKwFix . "/kwitansi/SPPD/" .date_format($tgl_brgt,'m') . "/" . date_format($tgl_brgt,'Y');
+                $datakwi = array(
+                  "no_kwitansi" => $no_kwit,
+                  "tanggal"     => date('Y-m-d'),
+                  "status"      => 0,
+                  'total_uang' =>$total_biaya
+                );
+                $this->client_model->tambah_kwitansi($datakwi);
+
                 $this->session->set_flashdata('notif', '<div class="alert alert-success" role="alert"> Data Berhasil ditambah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                 redirect('client/usulan_baru');
               }
@@ -566,7 +641,9 @@ class Client extends CI_Controller
                     // echo $id;
                     // echo $no_spt;
                     $update_spt = array('no_spt' => $no_spt, );
+                    $update_sppd = array('no_sppd' => $no_spt, );
                     $this->client_model->update_spt($update_spt,$id);
+                    $this->client_model->update_sppd($update_sppd,$id);
                     $this->session->set_flashdata('notif', '<div class="alert alert-success" role="alert"> No SPT Sudah Terbit <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                     redirect('client/telaah_baru');
                   }
@@ -579,14 +656,126 @@ class Client extends CI_Controller
                     $biaya_lain = $this->client_model->ambil_biaya_lain();
                     $lupsum = $this->client_model->lupsum();
                     $hotel = $this->client_model->biaya_hotel();
+
+                    $transport = $this->client_model->transport();
+                    $eselon = $this->client_model->eselon();
                     $this->template->loadContent('client/biaya',array(
                       'provinsi' => $provinsi,
                       'kota' => $kota,
                       'biaya_transport' =>$biaya_transport,
                       'biaya_lain' =>$biaya_lain,
                       'lupsum' =>$lupsum,
-                      'hotel' =>$hotel
+                      'hotel' =>$hotel,
+                      'transport' =>$transport,
+                      'eselon' => $eselon
                     ));
+                  }
+                  public function tambah_provinsi()
+                  {
+                    $provinsi = $this->input->post("nama");
+                    $data = array('nama' => $provinsi );
+                    $this->client_model->tambah_data_provinsi($data);
+
+                    $this->session->set_flashdata('notif', '<div class="alert alert-success" role="alert"> Data Berhasil ditambah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    redirect('client/biaya');
+                  }
+                  public function tambah_kota_tujuan()
+                  {
+                    $kota = $this->input->post("nama");
+                    $data = array('nama' => $kota );
+                    $this->client_model->tambah_data_kota($data);
+                    $this->session->set_flashdata('notif', '<div class="alert alert-success" role="alert"> Data Berhasil ditambah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    redirect('client/biaya');
+                  }
+                  public function tambah_transportasi()
+                  {
+                    $transport = $this->input->post("transport");
+                    $eselon = $this->input->post("eselon");
+                    $jumlah = $this->input->post("jumlah");
+                    // $kota = $this->input->post("kota");
+                    $data = array(
+                      'jenis_transport_id' => $transport,
+                      'id_eselon' =>$eselon,
+                      'jumlah' =>$jumlah,
+                      // 'kota_id' =>$kota
+                    );
+                    $this->client_model->tambah_biaya_transport($data);
+                    $this->session->set_flashdata('notif', '<div class="alert alert-success" role="alert"> Data Berhasil ditambah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    redirect('client/biaya');
+                  }
+                  public function tambah_biaya_lain_lain()
+                  {
+                    $nama = $this->input->post("nama");
+                    $nominal = $this->input->post("nominal");
+                    $keterangan = $this->input->post("keterangan");
+
+                    $data = array(
+                      'nama' => $nama,
+                      'jumlah' =>$nominal,
+                      'ket' =>$keterangan,
+
+                    );
+                    $this->client_model->tambah_biaya_lain_lain($data);
+                    $this->session->set_flashdata('notif', '<div class="alert alert-success" role="alert"> Data Berhasil ditambah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    redirect('client/biaya');
+                  }
+
+                  public function tambah_lupsum()
+                  {
+                    $kota = $this->input->post("kota");
+                    $nominal = $this->input->post("nominal");
+
+                    $data = array(
+                      'kota_id' => $kota,
+                      'jumlah' =>$nominal,
+
+                    );
+                    $this->client_model->tambah_lupsum($data);
+                    $this->session->set_flashdata('notif', '<div class="alert alert-success" role="alert"> Data Berhasil ditambah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    redirect('client/biaya');
+                  }
+                  public function tambah_biaya_hotel()
+                  {
+                    $eselon = $this->input->post("eselon");
+                    // $kota = $this->input->post("kota");
+                    $nominal = $this->input->post("nominal");
+
+                    $data = array(
+                      'id_eselon' =>$eselon,
+                      // 'kota_id' => $kota,
+                      'jumlah' =>$nominal,
+
+                    );
+                    $this->client_model->tambah_hotel($data);
+                    $this->session->set_flashdata('notif', '<div class="alert alert-success" role="alert"> Data Berhasil ditambah <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    redirect('client/biaya');
+                  }
+                  public function detil_kwitansi($id)
+                  {
+                    $data_kwitansi = $this->client_model->detil_kwitansi($id)->row();
+                    $data_detil_kwitansi = $this->client_model->data_detil_kwitansi($id)->result();
+                    $data_detil_kwitansi_biaya_lain = $this->client_model->data_detil_kwitansi_biaya_lain($id)->result();
+                    $this->template->loadContent('client/detil_kwitansi',array(
+                      'data_kwitansi' => $data_kwitansi,
+                      'data_detil_kwitansi' =>$data_detil_kwitansi,
+                      'data_detil_kwitansi_biaya_lain' =>$data_detil_kwitansi_biaya_lain
+                    ));
+                  }
+                  public function tolak_kwitansi($id)
+                  {
+                    $data = array('status' => 0, );
+                    $this->client_model->update_status_kwitansi($data,$id);
+                    $this->session->set_flashdata('notif', '<div class="alert alert-warning" role="alert"> Kwitansi di tolak <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    redirect('client/kwitansi');
+
+                  }
+                  public function setuju_kwitansi($id)
+                  {
+                    $data = array('status' => 1, );
+                    $this->client_model->update_status_kwitansi($data,$id);
+                    $this->session->set_flashdata('notif', '<div class="alert alert-success" role="alert"> Kwitansi disetujui <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    redirect('client/kwitansi');
+
                   }
                   public function hapus_spt($id)
                   {
@@ -607,10 +796,10 @@ class Client extends CI_Controller
                   {
                     // code...
                   }
-public function detail_kwitansi($id)
-{
-  // code...
-}
+                  public function detail_kwitansi($id)
+                  {
+                    $this->template->loadContent('client/detil_kwitansi');
+                  }
 
                   public function coba_print()
                   {

@@ -328,16 +328,19 @@ class Client_Model extends CI_Model
   }
   public function kwitansi()
   {
-    return $this->db->select('
-    kwitansi.id as id_kwitansi,
+    return $this->db->select("
+    DISTINCT(kwitansi.id) as id_kwitansi,
     kwitansi.no_kwitansi as no_kwitansi,
-    kwitansi.total_uang as total_uang,
-    sppd.tugas as tugas_sppd,
     sppd.no_sppd as no_sppd,
-    sppd.status as status_sppd')
-    ->join("detil_sppd", "kwitansi.id = detil_sppd.kwitansi_id")
-    ->join("sppd", "detil_sppd.sppd_id = sppd.id")
-    ->where('total_uang IS not NULL', null, false)
+    kwitansi.status as status_kwitansi,
+    kwitansi.total_uang as total_biaya,
+    kota.nama as nama_kota
+    ")
+    ->join('detil_kwitansi','detil_kwitansi.kwitansi_id = kwitansi.id')
+    ->join('detil_kwitansi_biaya_lain','detil_kwitansi.kwitansi_id = kwitansi.id')
+    ->join('detil_sppd','detil_sppd.kwitansi_id = kwitansi.id')
+    ->join('sppd','sppd.id = detil_sppd.sppd_id')
+    ->join('kota','kota.id = sppd.kota_id')
     ->get('kwitansi');
   }
   public function ambil_provinsi()
@@ -350,22 +353,18 @@ class Client_Model extends CI_Model
     return $this->db->select('*')
     ->get('kota');
   }
+
   public function master_biaya_transport()
   {
     return $this->db->select('
-    biaya_transport.id as id_biaya_transport,
-    biaya_transport.jenis_transport_id as id_jenis_transport,
-    biaya_transport.golongan_id as id_golongan_transport,
-    biaya_transport.kota_id as id_kota,
-    biaya_transport.jumlah as jumlah_transport,
-    golongan.nama as nama_golongan,
-    jenis_transport.nama as nama_transport,
-    kota.nama as nama_kota
-    '
+    "biaya_transport"."id" as "id_biaya_transport",
+    "biaya_transport"."jenis_transport_id" as "id_jenis_transport",
+    "biaya_transport"."jumlah" as "jumlah_transport",
+    "eselon"."nama" as "eselon",
+    "jenis_transport"."nama" as "nama_transport"'
     )
-    ->join("golongan", " golongan.id = biaya_transport.golongan_id")
     ->join("jenis_transport", "biaya_transport.jenis_transport_id = jenis_transport.id")
-    ->join("kota", " kota.id = biaya_transport.kota_id")
+    ->join("eselon", " biaya_transport.id_eselon = eselon.id")
     ->get('biaya_transport');
   }
   public function ambil_biaya_lain()
@@ -376,7 +375,7 @@ class Client_Model extends CI_Model
   public function lupsum()
   {
     return $this->db->select('
-      biaya_harian.jumlah as jumlah_biaya,  kota.nama as nama_kota '
+    biaya_harian.jumlah as jumlah_biaya,  kota.nama as nama_kota '
     )
     ->join("kota", " kota.id = biaya_harian.kota_id ")
     ->join("provinsi", "provinsi.id = kota.provinsi_id")
@@ -384,13 +383,147 @@ class Client_Model extends CI_Model
   }
   public function biaya_hotel()
   {
-  return $this->db->select('
-    golongan.nama as nama_golongan, kota.nama as nama_kota, jumlah '
-  )
-  ->join("kota", " kota.id = biaya_hotel.kota_id")
-  ->join("golongan", "golongan.id = biaya_hotel.golongan_id")
-  ->get('biaya_hotel');
+    return $this->db->select('
+    jumlah, eselon.nama as eselon'
+    )
+    ->join("eselon", " eselon.id = biaya_hotel.id_eselon")
+    ->get('biaya_hotel');
   }
+
+  public function eselon()
+  {
+    return $this->db->select('*')
+    ->get('eselon');
+  }
+  public function transport()
+  {
+    return $this->db->select('*')
+    ->get('jenis_transport');
+  }
+  public function tambah_biaya_transport($data)
+  {
+    $this->db->insert('biaya_transport', $data);
+    return $this->db->insert_id();
+  }
+  public function get_biaya_harian($id)
+  {
+    // code...
+  }
+  public function get_biaya_hotel($id)
+  {
+    // code...
+  }
+  public function get_biaya_transport($id)
+  {
+    // code...
+  }
+  public function tambah_data_provinsi($data)
+  {
+    $this->db->insert('provinsi', $data);
+    return $this->db->insert_id();
+  }
+  public function tambah_data_kota($data)
+  {
+    $this->db->insert('kota', $data);
+    return $this->db->insert_id();
+  }
+  public function tambah_biaya_lain_lain($data)
+  {
+    $this->db->insert('biaya_lain', $data);
+    return $this->db->insert_id();
+  }
+  public function tambah_lupsum($data)
+  {
+    $this->db->insert('biaya_harian', $data);
+    return $this->db->insert_id();
+  }
+  public function tambah_hotel($data)
+  {
+    $this->db->insert('biaya_hotel', $data);
+    return $this->db->insert_id();
+  }
+  public function eselon_pegawai($nip)
+  {
+    return $this->db->select('eselon')
+    ->where('nip',$nip)
+    ->get('pegawai');
+  }
+  public function biaya_transport_eselon($id_eselon,$id_jenis_transport)
+  {
+    return $this->db->select("jumlah")
+    ->join('eselon','eselon.id = biaya_transport.id_eselon')
+    ->where("eselon.nama",$id_eselon)
+    ->where("jenis_transport_id",$id_jenis_transport)
+    ->get('biaya_transport');
+  }
+  public function biaya_hotel_eselon($id_eselon)
+  {
+    return $this->db->select("jumlah")
+    ->join('eselon','eselon.id = biaya_hotel.id_eselon ')
+    ->where("eselon.nama",$id_eselon)
+    ->get('biaya_hotel');
+  }
+  public function lupsum_dinas($id_kota)
+  {
+    return $this->db->select("jumlah")
+    ->where("biaya_harian.kota_id",$id_kota)
+    ->get('biaya_harian');
+  }
+  public function tambah_detil_kwintasi($data)
+  {
+    $this->db->insert('detil_kwitansi', $data);
+    return $this->db->insert_id();
+  }
+  public function update_sppd($data,$id)
+  {
+    $this->db->where('id', $id);
+    $this->db->update('sppd', $data);
+  }
+  public function detil_kwitansi($id)
+  {
+    return $this->db->select("
+    kwitansi.id as id_kwitansi,
+    sppd.no_sppd as no_sppd,
+    kwitansi.no_kwitansi as no_kwitansi,
+    kwitansi.status as status_kwitansi,
+    kwitansi.total_uang as total_biaya,
+    kota.nama as nama_kota")
+    ->join('detil_kwitansi','detil_kwitansi.kwitansi_id = kwitansi.id')
+    ->join('detil_kwitansi_biaya_lain','detil_kwitansi.kwitansi_id = kwitansi.id')
+    ->join('detil_sppd','detil_sppd.kwitansi_id = kwitansi.id')
+    ->join('sppd','sppd.id = detil_sppd.sppd_id')
+    ->join('kota','kota.id = sppd.kota_id')
+    ->order_by("kwitansi.id")
+    ->group_by('kwitansi.id,sppd.no_sppd,kwitansi.no_kwitansi,kwitansi.status,kwitansi.total_uang,kota.nama')
+    ->where('kwitansi.id',$id)
+    ->get('kwitansi');
+  }
+  public function data_detil_kwitansi($id_kwitansi)
+  {
+    return $this->db->select("
+    detil_kwitansi.nip as nip,
+    detil_kwitansi.subtotal_harian as total_lupsum,
+    detil_kwitansi.subtotal_transport as total_transport,
+    detil_kwitansi.subtotal_hotel as total_hotel,
+    master_user.user_name as nama_pegawai")
+    ->where("kwitansi_id",$id_kwitansi)
+    ->join('master_user','detil_kwitansi.nip = master_user.user_id')
+    ->get('detil_kwitansi');
+  }
+  public function data_detil_kwitansi_biaya_lain($id_biaya_lain)
+  {
+    return $this->db->select("biaya_lain.nama as nama_item,
+    detil_kwitansi_biaya_lain.jumlah as jumlah_item,
+    detil_kwitansi_biaya_lain.subtotal as total_biaya")
+    ->where("kwitansi_id",$id_biaya_lain)
+    ->join('biaya_lain','biaya_lain.id = detil_kwitansi_biaya_lain.biaya_lain_id')
+    ->get('detil_kwitansi_biaya_lain');
+  }
+public function update_status_kwitansi($data,$id)
+{
+  $this->db->where('id', $id);
+  $this->db->update('kwitansi', $data);
+}
 }
 
 ?>

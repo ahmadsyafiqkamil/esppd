@@ -192,7 +192,7 @@ $lang['cnt_129'] = 'Laporan Anggaran';
 $lang['cnt_130'] = 'No Kwitansi';
 $lang['cnt_131'] = 'No SPPD';
 $lang['cnt_132'] = 'Total Biaya';
-$lang['cnt_133'] = 'Status SPPD';
+$lang['cnt_133'] = 'Status Kwitansi';
 
 // biaya
 $lang['cnt_134'] = 'Master Biaya';

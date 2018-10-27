@@ -13,6 +13,7 @@
 	<link href="<?php echo base_url(); ?>assets/css/core.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url(); ?>assets/css/components.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url(); ?>assets/css/colors.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url(); ?>assets/css/yearpicker.css" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
@@ -78,9 +79,15 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/pickers/pickadate/picker.time.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/pickers/pickadate/legacy.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pages/picker_date.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/year-select.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/yearpicker.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/yearpicker.js" async></script>
+
 
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/core/app.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/ui/ripple.min.js"></script>
+
+
 
 	<?php echo $cssincludes; ?>
 	<!-- /theme JS files -->

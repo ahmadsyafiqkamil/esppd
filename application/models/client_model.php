@@ -519,11 +519,108 @@ class Client_Model extends CI_Model
     ->join('biaya_lain','biaya_lain.id = detil_kwitansi_biaya_lain.biaya_lain_id')
     ->get('detil_kwitansi_biaya_lain');
   }
-public function update_status_kwitansi($data,$id)
-{
-  $this->db->where('id', $id);
-  $this->db->update('kwitansi', $data);
-}
+  public function update_status_kwitansi($data,$id)
+  {
+    $this->db->where('id', $id);
+    $this->db->update('kwitansi', $data);
+  }
+  public function laporan_keuangan_januari($tahun)
+  {
+    return $this->db->select("date_part('month',tanggal),sum (total_uang) as total")
+    ->where(" date_part('month',tanggal)",1)
+    ->where(" date_part('year',tanggal)",$tahun)
+    ->group_by("date_trunc('month',tanggal), date_part('month',tanggal) ")
+    ->get('kwitansi');
+  }
+  public function laporan_keuangan_februari($tahun)
+  {
+    return $this->db->select("date_part('month',tanggal),sum (total_uang) as total")
+    ->where(" date_part('month',tanggal)",2)
+    ->where(" date_part('year',tanggal)",$tahun)
+    ->group_by("date_trunc('month',tanggal), date_part('month',tanggal) ")
+    ->get('kwitansi');
+  }
+  public function laporan_keuangan_maret($tahun)
+  {
+    return $this->db->select("date_part('month',tanggal),sum (total_uang) as total")
+    ->where(" date_part('month',tanggal)",3)
+    ->where(" date_part('year',tanggal)",$tahun)
+    ->group_by("date_trunc('month',tanggal), date_part('month',tanggal) ")
+    ->get('kwitansi');
+  }
+  public function laporan_keuangan_april($tahun)
+  {
+    return $this->db->select("date_part('month',tanggal),sum (total_uang) as total")
+    ->where(" date_part('month',tanggal)",4)
+    ->where(" date_part('year',tanggal)",$tahun)
+    ->group_by("date_trunc('month',tanggal), date_part('month',tanggal) ")
+    ->get('kwitansi');
+  }
+  public function laporan_keuangan_mei($tahun)
+  {
+    return $this->db->select("date_part('month',tanggal),sum (total_uang) as total")
+    ->where(" date_part('month',tanggal)",5)
+    ->where(" date_part('year',tanggal)",$tahun)
+    ->group_by("date_trunc('month',tanggal), date_part('month',tanggal) ")
+    ->get('kwitansi');
+  }
+  public function laporan_keuangan_juni($tahun)
+  {
+    return $this->db->select("date_part('month',tanggal),sum (total_uang) as total")
+    ->where(" date_part('month',tanggal)",6)
+    ->where(" date_part('year',tanggal)",$tahun)
+    ->group_by("date_trunc('month',tanggal), date_part('month',tanggal) ")
+    ->get('kwitansi');
+  }
+  public function laporan_keuangan_juli($tahun)
+  {
+    return $this->db->select("date_part('month',tanggal),sum (total_uang) as total")
+    ->where(" date_part('month',tanggal)",7)
+    ->where(" date_part('year',tanggal)",$tahun)
+    ->group_by("date_trunc('month',tanggal), date_part('month',tanggal) ")
+    ->get('kwitansi');
+  }
+  public function laporan_keuangan_agustus($tahun)
+  {
+    return $this->db->select("date_part('month',tanggal),sum (total_uang) as total")
+    ->where(" date_part('month',tanggal)",8)
+    ->where(" date_part('year',tanggal)",$tahun)
+    ->group_by("date_trunc('month',tanggal), date_part('month',tanggal) ")
+    ->get('kwitansi');
+  }
+  public function laporan_keuangan_september($tahun)
+  {
+    return $this->db->select("date_part('month',tanggal),sum (total_uang) as total")
+    ->where(" date_part('month',tanggal)",9)
+    ->where(" date_part('year',tanggal)",$tahun)
+    ->group_by("date_trunc('month',tanggal), date_part('month',tanggal) ")
+    ->get('kwitansi');
+  }
+  public function laporan_keuangan_oktober($tahun)
+  {
+    return $this->db->select("date_part('month',tanggal),sum (total_uang) as total")
+    ->where(" date_part('month',tanggal)",10)
+    ->where(" date_part('year',tanggal)",$tahun)
+    ->group_by("date_trunc('month',tanggal), date_part('month',tanggal) ")
+    ->get('kwitansi');
+  }
+  public function laporan_keuangan_november($tahun)
+  {
+    return $this->db->select("date_part('month',tanggal),sum (total_uang) as total")
+    ->where(" date_part('month',tanggal)",11)
+    ->where(" date_part('year',tanggal)",$tahun)
+    ->group_by("date_trunc('month',tanggal), date_part('month',tanggal) ")
+    ->get('kwitansi');
+  }
+  public function laporan_keuangan_desember($tahun)
+  {
+    return $this->db->select("date_part('month',tanggal),sum (total_uang) as total")
+    ->where(" date_part('month',tanggal)",12)
+    ->where(" date_part('year',tanggal)",$tahun)
+    ->group_by("date_trunc('month',tanggal), date_part('month',tanggal) ")
+    ->get('kwitansi');
+  }
+
 }
 
 ?>

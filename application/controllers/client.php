@@ -334,10 +334,75 @@ class Client extends CI_Controller
           // }
           public function laporan()
           {
-            $kwitansi = $this->client_model->kwitansi();
+            // $kwitansi = $this->client_model->kwitansi();
+
+            $tahun = date('Y');
+
+            $januari = $this->client_model->laporan_keuangan_januari($tahun)->row();
+            $februari = $this->client_model->laporan_keuangan_februari($tahun)->row();
+            $maret = $this->client_model->laporan_keuangan_maret($tahun)->row();
+            $april = $this->client_model->laporan_keuangan_april($tahun)->row();
+            $mei = $this->client_model->laporan_keuangan_mei($tahun)->row();
+            $juni = $this->client_model->laporan_keuangan_juni($tahun)->row();
+            $juli = $this->client_model->laporan_keuangan_juli($tahun)->row();
+            $agustus = $this->client_model->laporan_keuangan_agustus($tahun)->row();
+            $oktober = $this->client_model->laporan_keuangan_oktober($tahun)->row();
+            $september = $this->client_model->laporan_keuangan_september($tahun)->row();
+            $november = $this->client_model->laporan_keuangan_november($tahun)->row();
+            $desember = $this->client_model->laporan_keuangan_desember($tahun)->row();
+
+            $data = array('januari' => $januari->total,
+            'februari' => $februari->total,
+            'maret' => $maret->total,
+            'april' => $april->total,
+            'mei' => $mei->total,
+            'juni' => $juni->total,
+            'juli' => $juli->total,
+            'agustus' => $agustus->total,
+            'september' => $september->total,
+            'oktober' => $oktober->total,
+            'november' => $november->total,
+            'desember' => $desember->total,
+           );
+
+           // print_r($data_json);
             $this->template->loadContent("client/laporan",array(
-              'kwitansi' => $kwitansi
+              'kwitansi' => $kwitansi,
+              'data' =>$data
             ));
+          }
+
+          public function laporan_tahun($tahun)
+          {
+            $januari = $this->client_model->laporan_keuangan_januari($tahun)->row();
+            $februari = $this->client_model->laporan_keuangan_februari($tahun)->row();
+            $maret = $this->client_model->laporan_keuangan_maret($tahun)->row();
+            $april = $this->client_model->laporan_keuangan_april($tahun)->row();
+            $mei = $this->client_model->laporan_keuangan_mei($tahun)->row();
+            $juni = $this->client_model->laporan_keuangan_juni($tahun)->row();
+            $juli = $this->client_model->laporan_keuangan_juli($tahun)->row();
+            $agustus = $this->client_model->laporan_keuangan_agustus($tahun)->row();
+            $oktober = $this->client_model->laporan_keuangan_oktober($tahun)->row();
+            $september = $this->client_model->laporan_keuangan_september($tahun)->row();
+            $november = $this->client_model->laporan_keuangan_november($tahun)->row();
+            $desember = $this->client_model->laporan_keuangan_desember($tahun)->row();
+
+            $data = array('januari' => $januari->total,
+            'februari' => $februari->total,
+            'maret' => $maret->total,
+            'april' => $april->total,
+            'mei' => $mei->total,
+            'juni' => $juni->total,
+            'juli' => $juli->total,
+            'agustus' => $agustus->total,
+            'september' => $september->total,
+            'oktober' => $oktober->total,
+            'november' => $november->total,
+            'desember' => $desember->total,
+           );
+           $data_json = json_encode($data);
+           print_r($data_json);
+
           }
           public function laporan_anggaran()
           {

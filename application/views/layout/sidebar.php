@@ -56,8 +56,8 @@
           <li><a href="<?php echo site_url("client/kwitansi") ?>"><i class="icon-stack4"></i><?php echo lang('cnt_30'); ?></a></li>
           <!-- <li><a href="<?php echo site_url("client/riil") ?>"><i class="icon-grid"></i><?php echo lang('cnt_31'); ?></a></li> -->
           <li><a href="<?php echo site_url("client/laporan") ?>"><i class="glyphicon glyphicon-book"></i><?php echo lang('cnt_128'); ?></a></li>
-          <li><a href="<?php echo site_url("client/laporan_anggaran") ?>"><i class="glyphicon glyphicon-credit-card"></i><?php echo lang('cnt_129'); ?></a></li>
-          <li>
+          <!-- <li><a href="<?php echo site_url("client/laporan_anggaran") ?>"><i class="glyphicon glyphicon-credit-card"></i><?php echo lang('cnt_129'); ?></a></li> -->
+          <!-- <li>
             <a href="#"><i class="icon-stack3"></i> <span><?php echo lang('cnt_32'); ?></span></a>
             <ul>
 
@@ -65,7 +65,7 @@
               <li><a href="<?php echo site_url("client/rbulan") ?>"><?php echo lang('cnt_34'); ?></a></li>
               <li><a href="<?php echo site_url("client/log") ?>"><?php echo lang('cnt_35'); ?></a></li>
             </ul>
-          </li>
+          </li> -->
           <!-- /page kits -->
 
         </ul>

@@ -37,7 +37,7 @@
               <td><?php echo $i; ?></td>
               <!-- <td><?php echo $t->tugas; ?></td> -->
               <td><?php echo $t->perihal; ?></td>
-              <td><?php echo nice_date($t->tanggal_mulai, 'd-m-y') ; ?> sd <?php echo nice_date($t->tanggal_selesai,'d-m-y'); ?></td>
+              <td><?php echo nice_date($t->tanggal_mulai, 'd-m-Y') ; ?> sd <?php echo nice_date($t->tanggal_selesai,'d-m-Y'); ?></td>
               <td>
 
                 <?php

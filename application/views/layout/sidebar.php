@@ -33,7 +33,7 @@
           <!-- Main -->
           <li class="navigation-header"><span><?php echo lang('cnt_16'); ?></span> <i class="icon-menu" title="Main pages"></i></li>
           <li class="active"><a href="<?php echo site_url("client/") ?>"><i class="icon-home4"></i> <span><?php echo lang('cnt_17'); ?></span></a></li>
-          <li>
+          <!-- <li>
             <a href="#"><i class="icon-stack2"></i> <span><?php echo lang('cnt_18'); ?></span></a>
             <ul>
               <li><a href="<?php echo site_url("client/instansi") ?>"><?php echo lang('cnt_19'); ?></a></li>
@@ -43,7 +43,7 @@
               <li><a href="<?php echo site_url("client/transport") ?>"><?php echo lang('cnt_23'); ?></a></li>
               <li><a href="<?php echo site_url("client/ttd") ?>"><?php echo lang('cnt_24'); ?></a></li>
             </ul>
-          </li>
+          </li> -->
           <li>
             <a href="#"><i class="icon-stack3"></i> <span><?php echo lang('cnt_25'); ?></span></a>
             <ul>

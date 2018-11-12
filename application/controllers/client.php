@@ -260,16 +260,16 @@ class Client extends CI_Controller
       public function usulan_baru()
       {
         $level = $this->session->userdata('level');
-
+        $instansi = $this->session->userdata('id_instansi');
         if ($level == 'User') {
-          $usulan = $this->client_model->usulan_baru();
+          $usulan = $this->client_model->usulan_baru($instansi);
           $biayalain = $this->client_model->biayalain();
           $this->template->loadContent("client/usulan_baru",array(
             'usulan' =>$usulan,
             'biayalain' =>$biayalain));
 
           }elseif ($level == 'SuperAdmin') {
-            $usulan = $this->client_model->usulan_baru();
+            $usulan = $this->client_model->usulan_baru($instansi);
             $biayalain = $this->client_model->biayalain();
             $this->template->loadContent("client/usulan_baru",array(
               'usulan' =>$usulan,
@@ -292,8 +292,8 @@ class Client extends CI_Controller
 
           public function telaah_baru()
           {
-
-            $telaah_staf = $this->client_model->telaah();
+            $instansi = $this->session->userdata('id_instansi');
+            $telaah_staf = $this->client_model->telaah($instansi);
             $this->template->loadContent("client/telaah_staf.php", array(
               'telaah_staf' => $telaah_staf,
             ));
@@ -301,7 +301,9 @@ class Client extends CI_Controller
 
           public function tugas()
           {
-            $data = $this->client_model->spt();
+            $instansi = $this->session->userdata('id_instansi');
+
+            $data = $this->client_model->spt($instansi);
             $instansi = $this->client_model->instansi_get();
 
             $this->template->loadContent("client/tugas",array(
@@ -312,7 +314,8 @@ class Client extends CI_Controller
           }
           public function perjalanan()
           {
-            $data = $this->client_model->sppd();
+            $instansi = $this->session->userdata('id_instansi');
+            $data = $this->client_model->sppd($instansi);
             $this->template->loadContent("client/perjalanan",array(
               'sppd' => $data,
             ));
@@ -320,7 +323,8 @@ class Client extends CI_Controller
 
           public function kwitansi()
           {
-            $kwitansi = $this->client_model->kwitansi();
+            $instansi = $this->session->userdata('id_instansi');
+            $kwitansi = $this->client_model->kwitansi($instansi);
             $this->template->loadContent("client/kwitansi.php", array(
               'kwitansi' =>$kwitansi,
             ));
@@ -399,7 +403,20 @@ class Client extends CI_Controller
             'oktober' => $oktober->total,
             'november' => $november->total,
             'desember' => $desember->total,
-           );
+            );
+            $data = array('januari' => 100,
+            'februari' => 200,
+            'maret' => 300,
+            'april' => 400,
+            'mei' => 450,
+            'juni' => 200,
+            'juli' => 250,
+            'agustus' => 350,
+            'september' => 450,
+            'oktober' => 150,
+            'november' => 100,
+            'desember' => 200,
+            );
            $data_json = json_encode($data);
            print_r($data_json);
 
@@ -426,6 +443,7 @@ class Client extends CI_Controller
           {
             $kolok = $this->session->userdata('kolok');
             $level = $this->session->userdata('level');
+            $instansi = $this->session->userdata('id_instansi');
             $provinsi = $this->client_model->provinsi();
             $kota = $this->client_model->kota();
             $ttd = $this->client_model->ttd();
@@ -848,14 +866,28 @@ class Client extends CI_Controller
                   }
                   public function cetak_spt($id)
                   {
-                    $data = [];
+                    $id_instansi = $this->session->userdata('id_instansi');
+                    $data_instansi = $this->client_model->data_instansi($id_instansi)->row();
+                    $data_spt = $this->client_model->data_spt($id)->result();
+                    $data_sppd = $this->client_model->data_sppd($id)->row();
+                    $kota_tujuan = $this->client_model->kota_tujuan($data_sppd->kota_id)->row();
+                    $kota_berangkat = $this->client_model->kota_berangkat($data_sppd->berangkat_dari)->row();
+                    $data['instansi'] = $data_instansi;
+                    $data['data_spt'] = $data_spt;
+                    $data['sppd'] = $data_sppd;
+                    $data['tujuan'] = $kota_tujuan;
+                    $data['berangkat'] = $kota_berangkat;
+
                     $print = $this->load->view('print/spt', $data, true);
                     $this->m_pdf->pdf->WriteHTML($print);
                     $this->m_pdf->pdf->Output();
                   }
                   public function cetak_sppd($id)
                   {
-                    // code...
+                    $data = [];
+                    $print = $this->load->view('print/sppd', $data, true);
+                    $this->m_pdf->pdf->WriteHTML($print);
+                    $this->m_pdf->pdf->Output();
                   }
                   public function hapus_sppd($value='')
                   {
@@ -868,6 +900,7 @@ class Client extends CI_Controller
 
                   public function coba_print()
                   {
+
                     $data = [];
                     //load the view and saved it into $html variable
                     $html=$this->load->view('welcome_message', $data, true);

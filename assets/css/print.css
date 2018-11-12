@@ -1,0 +1,319 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:11pt;
+}
+
+.page {
+    /* width: 21cm; */
+    /* min-height: 33cm; */
+    padding: 1cm;
+    margin: 1cm auto;
+    border: 1px #D3D3D3 solid;
+    background: white;
+    font-size:11pt;
+}
+.kop {
+    width: 100%; 
+    font-size:12pt;
+}
+
+.kopimg {
+    /* width: 100px; */
+    height: 100px;
+    display: inline-block;
+    float: left;
+    margin-top: -10px;
+}
+
+.kopDeskripsi {
+    text-align: center;
+    display: inline-block;
+    width: 80%;
+}
+
+.kopDeskripsi h1 {
+    margin-bottom: -10px;
+}
+
+.sangatta {
+    font-weight: bold;
+    font-size: 1.17em;
+    margin-left: 130px;
+}
+
+.kodepos {
+    margin-left: 50px;
+    font-style: italic;
+    font-size: 8pt;
+}
+
+.kota {
+    margin-bottom: -2%;
+}
+
+.no-spt {
+    margin-top: 20px;
+    margin-bottom: 0px;
+    letter-spacing: 1.5px;
+}
+
+.data-spt {
+    width: 700px;
+    margin-left: 25px;
+}
+
+.data-spt td {
+    padding-top: 1px;
+}
+
+.beban-anggaran {
+    width: 700px;
+    margin-left: 25px;
+}
+
+.biaya-transportasi {
+    display: block;
+    list-style-type: none;
+    margin-top: 0;
+    margin-bottom: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 4px;
+}
+
+.beban-anggaran td {
+    padding-right: 150px;
+}
+
+.data-spt2 {
+    margin-left: 20px;
+}
+
+.data-spt2 td {
+    text-align:justify;
+    padding-right: 30px;
+    padding-top: 1px;
+    vertical-align: top;
+}
+
+.no-mar-pad {
+    padding: 0;
+    margin: 0;
+}
+
+.col-ttd {
+    position: relative;
+    bottom: 0px;
+    left: 400px;
+    width: 300px;
+    height: 250px;
+}
+
+.col-rampung {
+    position: relative;
+    bottom: 0px;
+    left: 350px;
+    background-color: yellow;
+    width: 350px;
+    height: 200px;
+}
+
+.header-sppd {
+    margin-left: 400px;
+    margin-top: 20px;
+}
+
+.data-sppd {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-sppd th, .data-sppd td {
+    border: 1px solid black;
+    padding: 2px;
+}
+.data-usulan {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-usulan th, .data-usulan td {
+    border-bottom: 1px solid black;
+    padding: 2px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    vertical-align: top;
+}
+.data-rincian {
+    width: 100%;
+    border-collapse: collapse;
+}
+.header-telaah{
+    width:700px;
+    table-layout: fixed;
+    text-align:justify;
+    padding-bottom: 10px;
+    margin-bottom:10px;
+}
+.header-telaah td{
+    vertical-align: top;
+}
+.data-rincian th, .data-rincian td {
+    border: 1px solid black;
+    padding: 5px;
+    vertical-align: top;
+}
+
+.data-rincian th {
+    padding: 1px;
+}
+
+.col-nominal {
+    float: left;
+    width: 350px;
+}
+
+.col-tanggal {
+    margin-top: 15px;
+}
+
+.plus-margin-md {
+    margin-left: 200px;
+}
+
+.plus-margin-xs {
+    margin-left: 50px;
+}
+
+.lampiran {
+    width: 600px;
+    height: : 250px;
+    margin-left: 50px;
+    border: 2px outset #060606;
+    margin-bottom: 5px;
+}
+
+.isi-telaah {
+    display: table;
+    table-layout: fixed;
+    width: 735px;
+    text-align: justify;
+}
+.isi-telaah td
+{
+    vertical-align: top;
+}
+.isi-sub-telaah {
+    display: table;
+    width:600px;
+    margin-left:100px;
+    table-layout: fixed;
+    text-align: justify;
+    padding:10px;
+}
+.isi-sub-telaah td
+{
+    vertical-align: top;
+}
+
+.isi-telaah ul {
+    display: block;
+    list-style-type: decimal;
+    margin-top: 0;
+    margin-bottom: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 4px;
+}
+.col-bottom-parent{
+    width:100%;
+}
+.col-bottom
+{
+    width:300px;
+    background:yellow;
+    float:left;
+}
+.laporan-parag
+{
+    margin-left:20px;
+    text-align:justify;
+}
+.hasil
+{
+    margin:0;
+    list-style-type: none;
+    text-indent:10px;
+    text-align:justify;
+}
+.col-ttd-laporan
+{
+    width:300px;
+    margin-left:400px;
+    margin-top:50px;
+}
+.table-pernyataan
+{
+    display: table;
+    width: 725px;
+    text-align: justify;
+    border-collapse: collapse;
+}
+.table-pernyataan td, .table-pernyataan th
+{
+    padding:5px;
+    border: 1px solid black;
+}
+.table-pernyataan th
+{
+    padding:10px;
+    text-align:center;
+    vertical-align: center;
+}
+.col-ttd-pernyataan
+{
+    float:left;
+    width:300px;
+    text-align: center;
+}
+.kop-kwitansi
+{
+    display: inline-block;
+    float:left;
+}
+.data-kwitansi
+{
+    margin-top:10px;
+}
+.data-kwitansi td
+{
+    padding-bottom:5px;
+    vertical-align: top;
+}
+.font-small
+{
+    font-size:11pt;
+}
+.terbilang{
+    padding:5px;
+    border: 1px solid black;
+    border-collapse: separate;
+    text-align:center;
+    vertical-align: center;
+}
+.col-ttd-terima-kwit
+{
+    display: inline-block;
+    float:left;
+    text-align:center;
+}
+.solid-black
+{
+    border:1px solid black;
+    border-collapse: collapse;
+    margin:0;
+    padding:0;
+    clear:both;
+}

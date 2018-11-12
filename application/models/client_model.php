@@ -98,17 +98,20 @@ class Client_Model extends CI_Model
     ->join("kwitansi", "kwitansi.id = detil_sppd.kwitansi_id")
     ->get("sppd");
   }
-  public function usulan_baru()
+  public function usulan_baru($id_instansi)
   {
     return $this->db->select('
     sppd.id as id_sppd,
     kota.nama as nama_kota,
+    	instansi.nama as instansi,
     sppd.is_kegiatan as kegiatan,
     sppd.tugas as tugas,
     sppd.status as status_sppd,
     sppd.is_telaah as sppd_telaah,
     sppd.no_spt as spt_sppd')
     ->join("kota", "sppd.kota_id = kota.id")
+    ->join("instansi", "instansi.id = sppd.instansi_id")
+    ->where("instansi.id",$id_instansi)
     ->get("sppd");
   }
 
@@ -118,11 +121,13 @@ class Client_Model extends CI_Model
     ->join("kwitansi", "detil_kwitansi_biaya_lain.id = kwitansi.id")
     ->get("detil_kwitansi_biaya_lain");
   }
-  public function telaah()
+  public function telaah($id_instansi)
   {
-    return $this->db->select('id, perihal, status, tanggal_mulai, tanggal_selesai, tanggal,
-    deleted_at, staf_penelaah, tujuan, sppd_id')
-    ->where('status ',0 )
+    return $this->db->select('telaah_staf.perihal as perihal, telaah_staf.status as status, telaah_staf.tanggal_mulai as tanggal_mulai, telaah_staf.tanggal_selesai as tanggal_selesai, telaah_staf.tanggal')
+    ->where('telaah_staf.status ',0 )
+    ->where('instansi.id',$id_instansi )
+    ->join("sppd", "sppd.telaah_id = telaah_staf.id")
+    ->join("instansi", "instansi.id = sppd.instansi_id")
     ->get('public.telaah_staf');
   }
   public function datatelaah()
@@ -139,7 +144,7 @@ class Client_Model extends CI_Model
     // ->where('sppd.status',0)
     ->get('public.sppd');
   }
-  public function spt()
+  public function spt($instansi)
   {
     return $this->db->select('
     sppd.id as id_sppd,
@@ -155,11 +160,12 @@ class Client_Model extends CI_Model
     ->order_by("no_spd")
     ->group_by(' sppd.id,sppd.no_spt,kota.nama,sppd.tugas')
     ->where('sppd.no_spt IS not NULL', null, false)
+    ->where('sppd.instansi_id', $instansi)
     ->get("sppd");
   }
 
 
-  public function sppd()
+  public function sppd($instansi)
   {
     return $this->db->select('
     sppd.id as id_sppd,
@@ -175,6 +181,7 @@ class Client_Model extends CI_Model
     ->order_by("no_spd")
     ->group_by(' id_sppd,sppd.no_spt,kota.nama,sppd.tugas,sppd.mata_anggaran')
     ->where('sppd.no_spt IS not NULL', null, false)
+    ->where('sppd.instansi_id', $instansi)
     ->get("sppd");
   }
   public function sppd_belum_ditelaah()
@@ -326,7 +333,7 @@ class Client_Model extends CI_Model
     $query = $this->db->get('telaah_staf');
     return $query->result_array();
   }
-  public function kwitansi()
+  public function kwitansi($instansi)
   {
     return $this->db->select("
     DISTINCT(kwitansi.id) as id_kwitansi,
@@ -341,6 +348,7 @@ class Client_Model extends CI_Model
     ->join('detil_sppd','detil_sppd.kwitansi_id = kwitansi.id')
     ->join('sppd','sppd.id = detil_sppd.sppd_id')
     ->join('kota','kota.id = sppd.kota_id')
+    ->where('sppd.instansi_id',$instansi)
     ->get('kwitansi');
   }
   public function ambil_provinsi()
@@ -620,7 +628,52 @@ class Client_Model extends CI_Model
     ->group_by("date_trunc('month',tanggal), date_part('month',tanggal) ")
     ->get('kwitansi');
   }
-
+  public function data_instansi($instansi)
+  {
+    return $this->db->select("*")
+    ->where("id",$instansi)
+    ->get('instansi');
+  }
+  public function data_spt($id)
+  {
+    return $this->db->select('
+    sppd.id as id_sppd,
+    sppd.no_spt as no_spd,
+    pegawai.pangkat as pangkat_pegawai,
+    pegawai.eselon as eselon_pangkat,
+    pegawai.jabatan as jabatan_pegawai,
+    master_user.user_name as nama_pegawai,
+    master_user.user_id as nip_pegawai,
+    kota.nama as nama_kota ,
+    sppd.tugas as tugas
+    ')
+    ->join("kota", "sppd.kota_id = kota.id")
+    ->join("detil_sppd", "detil_sppd.sppd_id = sppd.id")
+    ->join("kwitansi", "kwitansi.id = detil_sppd.kwitansi_id")
+    ->join("master_user","master_user.user_id = detil_sppd.nip")
+    ->join("pegawai","master_user.user_id = pegawai.nip18")
+    ->group_by('sppd.id,sppd.no_spt,kota.nama,sppd.tugas,pegawai.pangkat,pegawai.eselon,pegawai.jabatan,master_user.user_name,master_user.user_id')
+    ->where('sppd.id', $id)
+    ->get("sppd");
+  }
+  public function data_sppd($id)
+  {
+    return $this->db->select('*')
+    ->where('sppd.id',$id)
+    ->get('sppd');
+  }
+  public function kota_berangkat($id)
+  {
+    return $this->db->select('nama')
+    ->where('id',$id)
+    ->get('kota');
+  }
+  public function kota_tujuan($id)
+  {
+    return $this->db->select('nama')
+    ->where('id',$id)
+    ->get('kota');
+  }
 }
 
 ?>

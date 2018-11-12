@@ -2,6 +2,7 @@
 
 <body class="navbar-bottom login-container">
 	<!-- Main navbar -->
+
 	<div class="navbar navbar-inverse bg-indigo">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="index.html"><?php echo lang('cnt_1'); ?></a>
@@ -35,14 +36,8 @@
 		</div>
 	</div>
 	<!-- /main navbar -->
-
-	<?php if (  $msg === 0): ?>
-		<div class="alert alert-danger alert-styled-left alert-bordered">
-			<button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
-			<span class="text-semibold"><?php echo lang('error_1'); ?></span>
-		</div>
-	<?php endif; ?>
-
+<?=$this->session->flashdata('notif')?>
+	
 	<!-- Page container -->
 	<div class="page-container">
 
